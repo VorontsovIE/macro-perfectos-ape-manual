@@ -1,28 +1,30 @@
-\emph{Text from old manual abstract. Propose it to be removed, but not sure about paper references. Should we leave Pape paper reference?}
+Let us have two PWMs with given threshold levels. The similarity between PWMs is
+related to the number of words recognized by both PWMs
+(or the aggregated probability of the word set under the given i.i.d. model).
+To calculate this value we use generalized approach
+described in [Touzet2007] for two PWMs simultaneously in a way similar to that in [Pape2008].
+The number of words recognized by both PWMs can be used to construct a variant of Jaccard
+similarity measure for motifs considered as sets of allowed words scoring no less than predefined thresholds.
 
-\emph{Let us have two PWMs with given threshold levels. Using macroape software one can 
-calculate the number of words recognized by both PWMs (or the aggregated probability of the 
-word set under the given i.i.d. model). To calculate this value we use generalized approach 
-described in [Touzet2007] for two PWMs simultaneously in a way similar to that in [Pape2008]
-. The number of words recognized by both PWMs can be used to construct a variant of Jaccard 
-similarity measure for motifs considered as sets of allowed words.}
-
-Typical methods of comparing PWMs are based on direct comparison of elements, for instance 
+Typical methods of PWM comparison are based on direct evaluation of matrix elements, for instance
 by comparing matrices column by column (where different columns correspond to different 
-positions of a binding site). On the other hand, in applications PWM is used as TFBS model 
-to identify “binding sites” by scanning a given text and identifying words having PWM scores 
-no less than a preselected threshold. So, in reality a TFBS model is related to the set of words 
+positions of a transcription factor binding site).
+On the other hand, in applications PWM is used as TFBS model
+to identify “binding sites” by scanning a given sequence and identifying words with scores
+no less than a threshold.
+
+Thus, in reality a TFBS model is related to the set of words
 scoring no less than the given threshold for the given PWM. It is desirable to construct a 
-similarity measure for TFBS models according to the similarity between word sets recognized 
-by the matrices with given thresholds, rather than according to similarity between matrices per 
+similarity measure for TFBS models based on the similarity between word sets recognized
+by the matrices with given thresholds, rather than on  similarity between matrices per
 se. Moreover, comparison-by-elements strategy requires the matrices to have algebraically 
 comparable values (either frequencies or specifically scaled weights) which is not necessary if 
 sets of recognized TFBS are compared.
 
-Here we present a similarity measure which directly accounts for the similarity of 
+MACRO-APE computes a similarity measure which directly accounts for similarity of
 recognized word sets. This measure does not require PWM elements to be algebraically 
 comparable and so it can be used to compare weight matrices constructed by different 
-normalization / conversion strategies.
+normalization / conversion strategies (e.g. log-odds with different pseudocounts and/or background normalization).
 
 Let us have a position weight matrix of length $w$. The whole set of ACGT-alphabet 
 words of length $w$ will be called the dictionary of size $N=4^w$. For a fixed threshold level $t$ one 
@@ -46,10 +48,3 @@ extended to the same length by adding zero-columns (not affecting either score o
 and then compared as the two models of the same width. Then one can determine the optimal 
 shift and orientation by selecting the case with the highest Jaccard similarity. More formal and 
 detailed explanation can be found in the corresponding macroape paper [MACROAPE].
-
-\emph{
-I don't understand rationales of the next paragraph. It should probably be removed.}
-
-\emph{The comparison strategy does not require PWMs to be directly comparable (so PWMs can be 
-constructed from position count matrices, PCMs, using completely different approaches). Still it 
-is prudent to use similarly processed matrices for collection and a query motif in motif scanning procedure. }

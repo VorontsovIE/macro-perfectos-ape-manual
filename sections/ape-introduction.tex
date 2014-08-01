@@ -7,7 +7,7 @@ What is important, the threshold values are not directly comparable for differen
 
 The \pvalue\ of a certain PWM and a score threshold is the probability to generate a word with the score not less than the threshold at random.
 
-Inverse task is to estimate a threshold for a predefined \pvalue. The most common use case is assigning a threshold for a PWM such that a constant rate of positive prediction rate across the $l$-mer dictionary (e.g. only $x\%$ of words are predicted as putative TFBS).
+Inverse task is to estimate a threshold for a predefined \pvalue. In particular this allows to select a PWM score threshold corresponding to a predefined positive prediction rate across the $l$-mer dictionary (e.g. only $x\%$ of words are predicted as putative TFBS).
 
 Our tools perform threshold -- \pvalue\ conversion implementing a dynamic programming algorithm on a granulated (discretized) PWM models using a simplified approach comparing to that described in [Touzet].
 

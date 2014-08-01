@@ -1,5 +1,5 @@
 \subsection{Position matrix format description}
-All tools described below use the following matrix file format (each binding site position 
+All tools in the *-APE package use the following matrix file format (each binding site position 
 corresponds to a separate line):
 
 \texttt{\begin{tabular}{llll}
@@ -10,15 +10,19 @@ posw\_A\_weight & posw\_C\_weight & posw\_G\_weight & posw\_T\_weight
 \end{tabular}
 }
 
-Position matrix format is appliable for all kinds of positional matrices: positional weight(PWM), count(PCM) and probability/frequency(PPM). Matrix elements meaning changes accordingly.
+Position matrix format is appliable for all kinds of positional matrices: positional weight(PWM), count(PCM) and probability/frequency(PPM).
+Positonal count matrices are allowed to contain floating point numbers (e.g. in the case the counts were derived from 
+somehow weighted alignments).
 
-The number of the lines corresponds to the PWM width. If given, header will be treated as a motif name, otherwise filename will stand for motif name. Header has optional \texttt{"\textgreater"} sign at line start.
+The total number of lines corresponds to the PWM width (minus the header line). If given, header will be treated as a motif name, otherwise filename will stand for motif name. Header may carry an optional \texttt{"\textgreater"} sign at line start
+(like in fasta files).
 
-If necessary it's possible to read matrices, with nucleotides in rows and positions in columns. In order to do this, specify \cmdoption{--transpose} option.
+If necessary it's possible to read transposed matrices, with nucleotides in rows and positions in columns using \cmdoption{--transpose} option.
 
 \exampleof{PWM similar to HOCOMOCO transcription factor motif for KLF4}
 {\small\verbatiminput{./MotifSamples/KLF4_f2_alike.pwm}}
 
-More real-life examples are provided with the package.
+More real-life examples are provided with the package in respective motif collections.
 
-Dinucleotide version of tools work with dinucleotide motifs. Dinucleotide positional matrices have similar format but contain 16 columns instead of 4. Columns go in order: AA, AC, AG, AT, CA, CC, \dots, TT. It's also possible to use mononucleotide motifs in dinucleotide tools. For rationales and details take a look at \cmdoption{--from-mono} option.
+Dinucleotide versions of *-APE tools use dinucleotide motifs. 
+Dinucleotide positional matrices have similar format but contain 16 columns instead of 4. Columns go in order: AA, AC, AG, AT, CA, CC, \dots, TT. It's also possible to use mononucleotide motifs in dinucleotide tools (e.g. to use dinucleotide background). For rationales and details take a look at \cmdoption{--from-mono} option.

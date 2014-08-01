@@ -1,9 +1,11 @@
 \subsection{EvalSimilarity}
-This is a tool to compute the similarity of two given motifs defined as a Jaccard similarity of sets of words recognized by each motif. Sets of recognized words are given by a PWM accompanied with threshold or a \pvalue. By default set of recognized words is defined as top $0.05\%$ of words (i.e. \pvalue\ level of $0.0005$) ranked by a PWM.
+\cmdname{EvalSimilarity} computes the similarity of two given motifs defined as a Jaccard similarity of sets of words recognized by each motif.
+Optimal mutual alignment of the motifs is also estimated. Sets of recognized words are given by a PWM accompanied with threshold or a \pvalue. 
 
-It's possible to set either a different \pvalue\ with \cmdoption{-p \requiredarg{\pvalue}} option or to specify thresholds explicitly so that word sets contain all words passing corresponding thresholds. It can be accomplished using \cmdoption{--first-threshold \requiredarg{threshold}} and \cmdoption{--second-threshold \requiredarg{threshold}} options.
+By default a set of recognized words is defined as top $0.05\%$ of words (i.e. \pvalue\ level of $0.0005$) ranked by a PWM.
+It's possible to set required \pvalue\ with \cmdoption{-p \requiredarg{\pvalue}} option or to specify thresholds explicitly so that word sets contain all words passing corresponding thresholds. It can be accomplished using \cmdoption{--first-threshold \requiredarg{threshold}} and \cmdoption{--second-threshold \requiredarg{threshold}}.
 
-In order to get intuition of Jaccard similarity scale and to better catch our output format, try these examples and take a look at corresponding logos:
+In order to get intuition of Jaccard similarity scale and to better catch our output format, try these examples and take a look at corresponding motif logos (see the sample data):
 
 \emph{TODO: here aligned motif logos should go}
 
@@ -23,11 +25,12 @@ In order to get intuition of Jaccard similarity scale and to better catch our ou
 % \cmdoutputfromfile{EvalSimilarityOutput(SP1,GABPA).txt}
 
 
-By default \cmdname{EvalSimilarity} tests all possible motif alignments in both orientations. But there is an option \cmdoption{--position} to evaluate similarity in an explicitly specified specified motif alignment. Option usage is following:
+By default \cmdname{EvalSimilarity} tests all possible mutual motif alignments in both orientations. 
+A special option \cmdoption{--position} will force evaluating similarity with the explicitly specified motif alignment:
 
 \cmdoption{--position \requiredarg{shift},\requiredarg{direct|revcomp}}
 
-Option parameters are comma-separated, spaces not allowed.
+Option parameters are comma-separated, spaces not allowed; the position is defined for the second motif relative to the first.
 
 Try the following examples:
 \exampleof{rather similar motifs \texttt{KLF4\_f2} and \texttt{SP1\_f1} at optimal alignment}
@@ -40,25 +43,18 @@ Try the following examples:
 % \outputheader
 % \cmdoutputfromfile{EvalAlignmentOutput(WrongPosition).txt}
 
-If your PWMs have predefined thresholds you can specify them explicitly with \cmdoption{--first-threshold \requiredarg{threshold}} and \cmdoption{--second-threshold \requiredarg{threshold}} options. Given a threshold, \cmdname{EvalSimilarity} won't use threshold estimation by a \pvalue. \cmdname{EvalSimilarity} still will calculate Jaccard index of two sets but these sets will be
-
-
 {\small
-\textbf{Note!} By default \cmdname{EvalSimilarity} selects the threshold corresponding to the \pvalue\ not 
-less than requested (upper boundary). This is different from \cmdname{FindThreshold} which uses 
-lower boundary for \pvalue. 
+\textbf{Note!} By default \cmdname{EvalSimilarity} selects the thresholds corresponding to the \pvalue\ not 
+less than requested (upper boundary) possibly making compared word sets larger (not to miss words with scores too close to the threshold).
+This differs from \cmdname{FindThreshold} approach which, by default, uses 
+lower boundary for \pvalue thus controlling the prediction rate more strictly.
 
 It is very important to select upper \pvalue\ boundary for short PWMs. In case of given 
 low \pvalues\ they can recognize no words at all (so the Jaccard measure may have zero 
 numerator and zero denominator). For reasonable threshold levels both upper and lower 
-boundaries usually produce very close similarity values. 
+boundaries usually produce very close similarity values, see the MACRO-APE paper for details [MACROAPE].
 
 Nevertheless, one can override this behavior with \cmdoption{‘--boundary lower’} option. In such a case if 
 any of supplied PWMs recognizes no words for a selected \pvalue, then similarity can not be 
 correctly determined and macroape will report the similarity value of $-1$. 
 }
-
-% The same note is also appliable to the search through a model collection (see below). 
-
-% NOTE! For \cmdname{ScanCollection} tool this affects only a query PWM. The same option should be 
-% specified with \cmdname{PrecalculateThresholds} when preprocessing a PWM collection
