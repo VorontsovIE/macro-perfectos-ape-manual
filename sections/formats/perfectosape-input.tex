@@ -1,14 +1,16 @@
-\subsection{Input data format}
-Our tools use as input data lists of sequences containing SNP and collections of PWMs (or PCMs/PPMs). Also optionally they take lists of precalculates P-value - threshold pairs. Here we desribe formats of these data.
+\subsection{SNVs/SNPs format}
+\cmdname{SNPScan} uses as input data a list of sequences containing SNVs.
 
-List of sequences with SNPs is specified in a single file. Each sequence is situated on a separate line of the following format:
+List of sequences with SNVs is specified in a single file. Each sequence is situated on a separate line of the following format:
 
-\texttt{\inangles{name of sequence with SNP} \dots any data\dots  \inangles{sequence containing SNP}}
+\texttt{\inangles{name of sequence with SNV} \inangles{sequence containing SNV}}
 
-SNP name shouldn't contain spaces. Sequence consists of two allele variants in square brackets, separated with `/`, and flanking sequences at both sides. Length of flanking sequences should be sufficient to place the longest motif (so take 25-30bp at each side) into all positions relative to a place of polymorphism. An example of sequence with SNP:
+SNV name shouldn't contain spaces. Sequence consists of two allele variants in square brackets, separated with `/`, and flanking sequences at both sides. Length of flanking sequences should be sufficient to place the longest motif (so take 25-30bp at each side) into all positions relative to a place of polymorphism. 
 
-\texttt{rs9929218 [Homo sapiens] TTCTGAATTCCACAAC[A/G]GCTTTCCTGTGTTTTT}
-
-Motif PWMs should be placed in separate files. The file contains optional name of motif (on the first line. One can use \texttt{"\textgreater"} - it'll be eliminated from name - character to emphasize that that first line is not a matrix itself). Matrix has size $N \times 4$: each line contains weights of nucleotides in ACGT-order. Positions are separated with a whitespace symbols: space or tab. Actually this format is the same as used by MacroAPE tools.
-
-List of thresholds - P-value pairs will be described in output data section (because it's an output of one tool and an input of another).
+\exampleof{SNV list}
+\noindent\texttt{%
+rs10040172 gatttgccctgattgcagttactga[G/A]tggtacagacatcgtaataatctta
+rs10116271 taaattctatgtggggaagaggtct[C/T]gtagaggcgatgattcttacattgc
+rs10208293 cttcatacatttatgtccagtacct[A/G]tggaccctccttgtgaactcttctc
+rs10431961 tggcggggctggtcaggcggcgtcg[C/T]cggtacgctctgagcggcagcgtgt
+}

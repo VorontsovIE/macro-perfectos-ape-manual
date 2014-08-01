@@ -1,10 +1,10 @@
-\subsubsection{Dinucleotide motifs format}
-Dinucleotide version of tools work with dinucleotide motifs. Dinucleotide positional matrices have similar format but contain 16 columns instead of 4. Columns go in order: AA, AC, AG, AT, CA, CC, \dots, TT.
+\subsection{Obtaining dinucleotide motifs from mononucleotide ones}
+Dinucleotide tools take dinucleotide motifs as input parameters. But there is an option \cmdoption{--from-mono} to use basic mononucleotide motifs instead so that PWM~$\rightarrow$~DiPWM will be done internally. It can help in following cases:
+\begin{itemize}
+\item Comparison of dinucleotide motif versus mononucleotide one. In this case one motif should be loaded as dinucleotide motif, the rest - as mononucleotide motif internally converted to a dinucleotide motif. Further comparison performs on two dinucleotide motifs.
+\item Study of mononucleotide motif properties on dinucleotide background. It isn't possible to specify dinucleotide background for a mononucleotide tool, but is possible to specify mononucleotide motif and dinucleotide background for a dinucleotide tool. 
+\end{itemize}
 
-It is also possible to use mononucleotide PWMs instead of dinucleotide PWMs. Conversion PWM~$\rightarrow$~DiPWM will be done internally in such a way that each word has the same score on DiPWM as it had on PWM. It's done with \cmdoption{--from-mono} option. 
-
-\cmdoption{--first-from-mono} and family (analogous to options described in \ref{TransposeOption} section) are also available.
-
-Obtaining dinucleotide motifs from mononucleotide can help you to compare mononucleotide PWM with dinucleotide PWM. Another reason to use them - is a study of mononucleotide motif properties on dinucleotide background.
+PWM~$\rightarrow$~DiPWM is done in such a way that each word has the same score on DiPWM as it had on PWM.
 
 {\small\textbf{Notice:} scores of words on discreted PWM and corresponding diPWM can be slightly different due to a discretization step performed after PWM~$\rightarrow$~DiPWM conversion. This discrepancy shouldn't worry you, it's small enough and goes to zero with discretization increase.}
