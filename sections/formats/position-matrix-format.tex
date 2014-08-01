@@ -12,4 +12,13 @@ posw\_A\_weight & posw\_C\_weight & posw\_G\_weight & posw\_T\_weight
 
 Position matrix format is appliable for all kinds of positional matrices: positional weight(PWM), count(PCM) and probability/frequency(PPM). Matrix elements meaning changes accordingly.
 
-The number of the lines corresponds to the PWM width. If given, header will be treated as a motif name, otherwise filename will stand for motif name. Header has optional \texttt{"\textgreater"} sign at line start. Some real-life examples are provided with the package.
+The number of the lines corresponds to the PWM width. If given, header will be treated as a motif name, otherwise filename will stand for motif name. Header has optional \texttt{"\textgreater"} sign at line start.
+
+If necessary it's possible to read matrices, with nucleotides in rows and positions in columns. In order to do this, specify \cmdoption{--transpose} option.
+
+\exampleof{PWM similar to HOCOMOCO transcription factor motif for KLF4}
+{\small\verbatiminput{./MotifSamples/KLF4_f2_alike.pwm}}
+
+More real-life examples are provided with the package.
+
+Dinucleotide version of tools work with dinucleotide motifs. Dinucleotide positional matrices have similar format but contain 16 columns instead of 4. Columns go in order: AA, AC, AG, AT, CA, CC, \dots, TT. It's also possible to use mononucleotide motifs in dinucleotide tools. For rationales and details take a look at \cmdoption{--from-mono} option.
