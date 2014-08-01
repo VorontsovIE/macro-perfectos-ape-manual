@@ -1,0 +1,24 @@
+# MS: minimal similarity to output
+# P: P-value
+# PB: P-value boundary
+# V: discretization value
+# MS = 0.05
+# P = 0.0005
+# PB = upper
+# V = 1
+#
+# motif similarity shift overlap orientation
+KLF4_f2 1.0 0 10 direct
+SP1_f2 0.26782003264743703 -6 10 direct
+KLF1_f1 0.26633986928104575 -1 10 direct
+SP1_f1 0.2580456407255705 -1 10 direct
+SP3_f1 0.22040908979266507 -5 10 direct
+ZIC1_f1 0.13428571428571429 0 9 direct
+ZN148_si 0.12878506231454379 -6 9 direct
+WT1_f1 0.12858931552587646 -3 10 direct
+KLF3_f1 0.10248264322732754 -4 10 direct
+EGR4_f1 0.0688230008984726 -1 10 direct
+SP2_si 0.06371381046574356 -4 10 direct
+EGR3_f1 0.06049086691229506 -4 7 direct
+EGR2_si 0.05626489836605556 -4 7 direct
+ZN219_f1 0.051975747438845914 -2 10 direct

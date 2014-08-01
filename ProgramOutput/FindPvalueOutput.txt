@@ -1,0 +1,9 @@
+# V: discretization value
+# V = 10000
+#
+# T: threshold
+# W: number of recognized words
+# P: P-value
+# T W P
+4.1719 1048.0 0.00099945068359375
+5.2403 524.0 0.000499725341796875

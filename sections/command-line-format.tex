@@ -1,0 +1,26 @@
+\subsection{Command line format}
+All tools follow common usage format which is to be described below. We suggest you have a package in a file named \texttt{ape.jar} and located in the current folder. Then typical call of a tool will look like:\par
+\texttt{\secondcolindent{java -cp ape.jar }{ru.autosome.ToolName\\ \requiredarg{required arguments}\\ \optionalarg{options}}}
+
+Each command being used with \cmdoption{--help} or \cmdoption{--help} option prints help string describing order of arguments and a list of optional arguments for each command.
+
+Each tools is duplicated for working with mononucleotide and dinucleotide PWMs and corresponding background models. If not sure, use mononucleotide version. Naming convention is the same for all tools: mononucleotide version is located in package's root, dinucleotide version has the same name but is located in a subpackage \texttt{".di"}.
+
+E.g. for \cmdname{ape.FindThreshold} tool, class names are:
+\begin{itemize}
+\item\cmdname{ru.autosome.ape.FindThreshold} for mononucleotide version
+\item\cmdname{ru.autosome.ape.di.FindThreshold} for dinucleotide version.
+\end{itemize}
+
+Obviously, dinucleotide versions of tools use different input formats of Position Weight Matrices (DiPWM) and backgrounds. Input data formats will be discussed later.
+
+
+\subsubsection{Output formats}
+
+All tools except \cmdname{PrecalculateThresholds} print results into stdout (standard output stream).
+\cmdname{PrecalculateThresholds} yields result to a set of output files in a specified folder. 
+
+\cmdname{PrecalculateThresholds} and \cmdname{ScanCollection} print progress information to the stderr stream. This output can be disabled with \cmdoption{--silent} option.
+
+Output generally consists of two line types. Lines starting with \texttt{"\#"} character (commented out lines) show 
+input parameter values and descriptions. The results are presented in non-commented lines.

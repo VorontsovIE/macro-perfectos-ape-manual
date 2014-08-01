@@ -1,0 +1,19 @@
+\subsection{Introduction}
+DNA sequence is exposed to mutations. One special and particularly common kind of mutations are single nucleotide substitutions. Genome variants differing by such a mutation are called single nucleotide variants~(SNVs). If some variation became common in population they can be also called single nucleotide polymorphisms~(SNPs).
+
+Being positioned in coding regions of genome, mutations can affect protein sequence, but due to a small size of coding regions across genome, most mutations affect non-coding regions such as intronic and intergenic regions, promoters, 3'- and 5'-UTRs. These substitutions cannot break protein sequence but can interfere gene regulation. One possible mechanism of this process is a change in transcription factor~(TF) affinities to a mutated nucleotide sequence. Substitution can disrupt or create a transcription factor binding site~(TFBS). PERFECTOS-APE software is designed to evaluate difference in transcription factor affinity for different SNVs.
+
+PWM corresponding to a transcriptiopn factor provides a score for a putative TFBS. This score represents binding affinity, thus big difference in scores means big difference in binding affinities. Though as was discussed earlier [ref to APE section] scores are not comparable directly because PWM scores can be arbitrarily scaled. More convenient measure of affinity is a \pvalue\ - the probability to find a sequence with score not lower than given.
+
+PERFECTOS-APE compares TF affinity \pvalues\ for each sequence variant and calculates fold change of a substitution. Detailed algorithm for evaluating a fold change for a given TF and a substituion:
+
+\begin{itemize}
+\item For each genome position such that corresponding TFBS overlaps mutation position calculate PWM scores for each sequence variant.
+\item Independently choose the best position and score for both sequence variants.
+\item Estimate \pvalues\ for the best scores.
+\item Fold change is the rate of \pvalues.
+\end{itemize}
+
+PERFECTOS-APE tool tests each of given SNVs against a whole collection of TFs and yields (SNV, TF) pairs for which SNV significantly affected TF affinity to a binding site. Tool filters out such SNVs that TF doesn't have a site in any of sequence variants and SNVs which have fold change close to $1.0$.
+
+For score to \pvalue\ transformation we use two different approaches. First approach follows Touzet paper []. Second approach uses list of precalculated (score, \pvalue) sample pairs and uses binary search to find an approximate \pvalue. Precalculation strategy can be very useful taking into account that usually PWM collection is not a subject to change (and is strongly recomended for processing of tens or more SNVs and for working with dinucleotide motifs).

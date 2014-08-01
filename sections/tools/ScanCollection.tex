@@ -1,0 +1,40 @@
+\subsubsection{ScanCollection}
+This tool uses a collection of motifs to find PWMs similar to a given query. The tool returns 
+a list of all PWMs in the collection with corresponding similarity levels comparing to the query 
+PWM. List is sorted by similarity in descending order so the PWMs similar to the query are 
+located at the top of the list.
+\emph{FIX: Actually not yet sorted}
+
+
+NOTE! The shift and orientation are reported for PWMs from the collection relative to the query 
+PWM.
+
+\example{(search for motifs similar to \texttt{KLF4\_f2}, HOCOMOCO collection with uniform background), should take $\sim$1-2 minutes}
+\ScanCollection{motifs/KLF4\_f2.pat\\ ./hocomoco\_ad\_uniform/}
+% \outputheader[Output (STDOUT)]
+% \cmdoutputfromfile{ScanCollectionOutput(KLF4,default).txt}
+
+\emph{FIX: \cmdoption{--precise} has required parameter, not optional, yet}
+
+One can also use the two-pass search mode when the top of the list is additionally 
+reprocessed using a more precise discretization level. Second pass is executed only 
+if \cmdoption{--precise [min\_similarity=0.01]}
+key is specified. The precise search will recheck only the PWMs 
+similar to the query with a similarity no less than \cmdoption{min\_similarity}. The results of the second pass 
+will be marked by asterisk(*) in the output.
+
+One can specify similarity cutoff with option \cmdoption{-c \requiredarg{similarity cutoff}} to discard 
+comparison results with the resulting similarity less than a given value. By default results with similarity less than 0.05 are discarded.
+In order to print comparison results for all PWMs in collection, one should specify \cmdoption{--all} option.
+
+\example{(search PWMs similar to \texttt{KLF4\_f2}, uniform normalization, extended precision for the most similar PWMs), should take $\sim$10 seconds for 1.5 GHz CPU}
+\ScanCollection{motifs/KLF4\_f2.pat\\ ./hocomoco\_ad\_uniform/\\ --precise}
+% \outputheader[Output (STDOUT)]
+% \cmdoutputfromfile{ScanCollectionOutput(KLF4,precise).txt}
+
+To find similar PWMs using a particular \pvalue\ level one should use the \cmdoption{"-p"}~option.
+
+\exampleof{should take $\sim$7 seconds for 1.5GHz CPU}
+\ScanCollection{motifs/KLF4\_f2.pat\\ ./hocomoco\_ad\_uniform/\\ -p 0.001\\ -c 0.06 --precise 0.1}
+% \outputheader[Output (STDOUT)]
+% \cmdoutputfromfile{ScanCollectionOutput(KLF4,CustomPvalue,CustomFilters).txt}

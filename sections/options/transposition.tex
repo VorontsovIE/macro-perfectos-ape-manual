@@ -1,0 +1,4 @@
+\subsubsection{\cmdoption{--transpose} option for motifs specified in different orientation}\label{TransposeOption}
+You can use motifs with nucleotides in rows, by specifying \cmdoption{--transpose}. The only difference in format is matrix orientation, header remains the same. This option is available for each tool.
+
+Macroape tools work with pairs of motifs and \cmdoption{--transpose} option mean that both motif sources are transposed. In tool \texttt{macroape.EvalSimilarity} one can use \cmdoption{--first-transpose} or \cmdoption{--second-transpose} instead to use one matrix specified in horizontal orientation, another in vertical. Similar options for \texttt{macroape.ScanCollection} are named \cmdoption{--collection-transpose} and \cmdoption{--query-transpose}.

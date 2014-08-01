@@ -1,0 +1,27 @@
+# MS: minimal similarity to output
+# P: P-value
+# PB: P-value boundary
+# VR: discretization value, rough
+# VP: discretization value, precise
+# MP: minimal similarity for the 2nd pass in 'precise' mode
+# MS = 0.05
+# P = 0.0005
+# PB = upper
+# VR = 1
+# VP = 10
+# MP = 0.05
+#
+# motif similarity shift overlap orientation precise mode
+KLF4_f2 1.0 0 10 direct *
+KLF1_f1 0.26124515936848375 -1 10 direct *
+SP1_f1 0.24382446963092125 -1 10 direct *
+SP1_f2 0.2066482768325595 -6 10 direct *
+SP3_f1 0.19157407286598827 -5 10 direct *
+WT1_f1 0.126410686671273 -3 10 direct *
+KLF3_f1 0.11028473004279815 -4 10 direct *
+ZN148_si 0.09694303022157706 -6 9 direct *
+SP2_si 0.06967957253814294 -4 10 direct *
+ZIC1_f1 0.06158357771260997 0 9 direct *
+EGR4_f1 0.059941520467836254 -1 10 direct *
+EGR2_si 0.055004913225474496 -4 7 direct *
+EGR3_f1 0.051192488841477736 -4 7 direct *

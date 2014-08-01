@@ -1,0 +1,26 @@
+\subsection{FindThreshold}
+Stand-alone tool to search for the threshold corresponding to a given \pvalue\ for a given PWM. 
+This scripts requires a PWM and a \pvalue\ as input and returns a threshold for which the set of 
+words scoring with this PWM above the given threshold has the aggregated probability equal to 
+the given \pvalue. The program can process a set of \pvalues, and return a set of thresholds. 
+This tool implements the algorithm similar to that implemented in TFM-Pvalue software of 
+Helen Touzet \urldecorated{http://bioinfo.lifl.fr/TFM/TFMpvalue/} with fixed discretization level (see "PWM 
+discretization" section below).
+
+\usageheader
+\FindThreshold{\requiredarg{motif file}\\ \optionalarg{list of \pvalues}}
+
+\exampleof{motif file \texttt{KLF4\_f2.pat}, \pvalue\ of 0.001 and 0.0005}
+\FindThreshold{motifs/KLF4\_f2.pat 0.001 0.0005}
+% \outputheader
+% \cmdoutputfromfile{FindThresholdOutput.txt}
+
+\emph{TODO: to be moved to a discretiztation section}\par
+For a more precise result one can use \cmdoption{"-d \requiredarg{discretization rate}"} command line key like \cmdoption{"-d 100000"} to explicitly set 
+the discretization level for PWM elements (see the "PWM discretization" section below for 
+details). The discretization level of $10^5$ corresponds to the precision of PWM elements up to 
+5 decimal places. A larger number of decimal places results in the increased precision and 
+computational time. The default setting of 10000 gives reasonable "time-precision" tradeoff.
+
+NOTE! By default \cmdname{FindThreshold} looks for threshold large enough to obtain \pvalue\ not 
+greater than requested (lower boundary for \pvalue). For details see \cmdoption{--boundary} option description.

@@ -1,0 +1,13 @@
+\subsubsection{Background format}
+Nucleotide background model can be specified in optional arguments with different names like \cmdoption{-b} or \cmdoption{--query-background}. All background arguments, though, have the same format which is described in details in this section. Background option has one required argument: \cmdoption{-b \requiredarg{value}}. This \texttt{value} can be given in one of multiple different types.
+
+Default background model is a \texttt{wordwise} model. It means that all our calculations work with uniform background and in all calculations work with number of words rather than with probabilities of word set. E.g. \texttt{FindPvalue} will calculate not the probability of a word to be greater than threshold but a fraction of words greater than threshold (and number of such words). The difference from uniform background isn't too big, but output format can be a bit more expressive. Also it seems to us that number of words is a more natural and intuitively conceivable construction than word set frequencies.
+
+It is not necessary to specify wordwise background model explicitly but if you want to, use something like \cmdoption{-b wordwise}.
+
+All following formats are different ways to specify frequencies of each mucleotide:
+\begin{itemize}
+\item The most simple nucleotide background model is uniform, each nucleotide has the same probability to occur. Option format is: \cmdoption{-b uniform}.
+\item A bit more difficult format (and probably the most useful) is specifying GC-content~(in range 0 to 1). Option format is: \cmdoption{-b \requiredarg{GC-content}}. E.g.~\cmdoption{"-b~0.6"}
+\item The most detailed format is specifying nucleotide frequencies explicitly: \cmdoption{-b \requiredarg{$p_A,p_C,p_G,p_T$}}. E.g.~\cmdoption{"-b 0.2,0.3,0.3,0.2"} will define the same frequencies as GC-content 0.6 will. Note that nucleotide frequencies go in standard ACGT-order and are separated with commas. No spaces between frequencies allowed. Sum of frequencies should be equal to 1.0.
+\end{itemize}

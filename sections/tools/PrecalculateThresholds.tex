@@ -1,0 +1,26 @@
+\subsection{PrecalculateThresholds}
+This tool is intended to process the motif collection (presented as a folder containing separate 
+files for each motif) and to store precomputed score distributions of motif PWMs. Each score distributions is saved as a sorted list of \mbox{(threshold,\pvalue)} pairs taken uniformely as score distribution percentiles. It allows for faster score -- \pvalue\ conversion performing binary search through a list of thresholds or \pvalues. \cmdname{PrecalculateThresholds} doesn't store precise score distribution because for a non-disretized PWM it can be extremely large due to unnecessary precision. In practice it's sufficient to be able to estimate \pvalue\ with a specified error level of e.g. 5\%.
+
+In order to use precalculated distribution most tools have \cmdoption{--precalc} option which takes a folder with thresholds. See corresponding section in option descriptions.
+
+\textbf{Note:} Score distribution precalculation allows one to notably (in hundreds of times) increase speed of threshold to \pvalue\ calculation. Unfortunately it deals with a file system and demands loading of one more file. That's why usage of precalculated score distribution can slow down a bit some tools. It's recomended to use precalculated score distribution for tasks where the same motif \pvalue\ evaluation is performed multiple times so that the score distribution is loaded once and used multiple times. At a moment there is the only use case~-- \cmdname{perfectosape.SNPScan} which assesses each of multiple SNPs against the same motifs.
+% TODO: yet undocumented CollectDistanceMatrix also can take an advantage of PrecalculateThresholds (but there are more effective approaches).
+
+\textbf{Note:} Resulting score distribution depends on a discretization level and on a specified background model. Be careful and make sure that a score distribution was precomputed with the same parameters as another tool would use.
+
+\usageheader
+\PrecalculateThresholds{\requiredarg{motif collection folder}\\ \requiredarg{folder for results output}\\ \optionalarg{options}}
+
+\example{}
+\PrecalculateThresholds{./motifs/ ./motif\_thresholds/}
+
+This will create \texttt{./motif\_thresholds/} folder (if not already exist) and multiple files, one for each motif in \texttt{./motifs/} folder. Name of output file for a motif is \texttt{\inangles{name of motif}.thr}. Output files are created in a specified folder.
+Each file consists of lines in the following format: 
+
+\texttt{\inangles{threshold} \textit{tab} \inangles{corresponding \pvalue}}
+
+Lines are sorted with thresholds ascending (thus \pvalue\ descending).
+
+It takes about half a minute to preprocess the whole collection of $\sim$400 PWMs with default 
+parameters using 1.5 GHz CPU.

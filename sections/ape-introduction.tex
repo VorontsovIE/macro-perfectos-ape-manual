@@ -1,0 +1,9 @@
+APE tools generally deals with a task of converting motif thresholds to \pvalues\ and vice versa.
+
+Position weight matrix~(PWM) of a transcription factor~(TF) assigns a score to each word (nucleotide sequence of fixed length). It makes possible to range the words by their affinity to a TF. Given a threshold, one can divide all words into two subsets: words whose score exceeds the threshold and the rest. First subset represents putative transcription factor binding sites~(TFBS).
+
+It's a common task to evaluate a \pvalue\ of a certain PWM score, i.e. a probability to generate a word at random with the score not less than given. It provides an uniform measure to assess a TF affinity to a binding site.
+
+Inverse task is obtaining a threshold by a \pvalue. The most common use case is assigning a threshold for a PWM such that a constant rate of words are sites (e.g. top 0.05\%).
+
+Our tools perform threshold -- \pvalue\ conversion implementing a dynamic programming algorithm on a discreeted PWM models, similar to one described in [Touzet].

@@ -1,0 +1,54 @@
+\subsection{EvalSimilarity}
+Stand-alone tool to compute the similarity for two given motifs with given thresholds or given \pvalue\ level. Uses \pvalue\ of 0.0005 by default i.e. compares sets of top 0.05\% of words ranked by PWM scores. 
+
+In order to get feeling of Jaccard similarity scale and to better catch our output format, try these examples and take a look at corresponding logos:
+
+\exampleof{rather similar motifs \texttt{KLF4\_f2} and \texttt{SP1\_f1}}
+\EvalSimilarity{motifs/KLF4\_f2.pat\\ motifs/SP1\_f1.pat}
+% \outputheader
+% \cmdoutputfromfile{EvalSimilarityOutput(KLF4,SP1).txt}
+
+\exampleof{the same motif \texttt{SP1\_f1} in opposite orientations}
+\EvalSimilarity{motifs/SP1\_f1\_revcomp.pat\\ motifs/SP1\_f1.pat}
+% \outputheader
+% \cmdoutputfromfile{EvalSimilarityOutput(SP1,revcompSP1).txt}
+
+\exampleof{significantly different motifs \texttt{SP1\_f1} and \texttt{GABPA\_f1}}
+\EvalSimilarity{motifs/SP1\_f1.pat\\ motifs/GABPA\_f1.pat}
+% \outputheader
+% \cmdoutputfromfile{EvalSimilarityOutput(SP1,GABPA).txt}
+
+Note! By default \cmdname{EvalSimilarity} selects the threshold corresponding to the \pvalue\ not 
+less than requested (upper boundary). This is different from \cmdname{FindThreshold} which uses 
+lower boundary for \pvalue. 
+
+It is very important to select upper \pvalue\ boundary for short PWMs. In case of given 
+low \pvalues\ they can recognize no words at all (so the Jaccard measure may have zero 
+numerator and zero denominator). For reasonable threshold levels both upper and lower 
+boundaries usually produce very close similarity values. 
+
+Nevertheless, one can override this behavior with \cmdoption{‘--boundary lower’} option. In such a case if 
+any of supplied PWMs recognizes no words for a selected \pvalue, then similarity can not be 
+correctly determined and macroape will report the similarity value of $-1$. 
+
+% The same note is also appliable to the search through a model collection (see below). 
+
+% NOTE! For \cmdname{ScanCollection} tool this affects only a query PWM. The same option should be 
+% specified with \cmdname{PrecalculateThresholds} when preprocessing a PWM collection
+
+By default \cmdname{EvalSimilarity} tests all possible motif alignments in both orientations. But there is an option \cmdoption{--position} to evaluate similarity in an explicitly specified specified motif alignment. Option usage is following:
+
+\cmdoption{--position \requiredarg{shift},\requiredarg{direct|revcomp}}
+
+Option parameters are comma-separated, spaces not allowed.
+
+Try the following examples:
+\exampleof{rather similar motifs \texttt{KLF4\_f2} and \texttt{SP1\_f1} at optimal alignment}
+\EvalSimilarity{motifs/KLF4\_f2.pat\\ motifs/SP1\_f1.pat\\ --position -1,direct}
+% \outputheader
+% \cmdoutputfromfile{EvalAlignmentOutput(RightPosition).txt}
+
+\exampleof{rather similar motifs \texttt{KLF4\_f2} and \texttt{SP1\_f1} at completely wrong alignment}
+\EvalSimilarity{motifs/KLF4\_f2.pat\\ motifs/SP1\_f1.pat\\ --position 3,revcomp}
+% \outputheader
+% \cmdoutputfromfile{EvalAlignmentOutput(WrongPosition).txt}

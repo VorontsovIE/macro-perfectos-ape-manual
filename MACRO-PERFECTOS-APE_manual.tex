@@ -1,0 +1,138 @@
+\documentclass[draft]{article}
+
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, urlcolor=blue, pdfborder={0 0 0}]{hyperref}
+\usepackage{verbatim}
+
+\tolerance=500
+\newcommand*{\urldecorated}[1]{[\url{#1}]}
+
+\newlength{\firstcolwidth}
+
+\newcommand*{\secondcolindent}[3][2em]{
+\par
+{
+\parindent=#1
+\settowidth{\firstcolwidth}{#2}
+\addtolength{\firstcolwidth}{#1}
+\setlength{\hangindent}{\firstcolwidth}
+#2#3
+\par
+}
+}
+
+\newcommand*{\ProgramInvokation}[2]{
+\secondcolindent[2em]{\texttt{java -cp ape.jar \mbox{ru.autosome.#1} }}{\texttt{#2}}
+}
+
+\newcommand*{\DefineProgramInvokationCommand}[2]{
+\newcommand{#1}[1]{
+\ProgramInvokation{#2}{##1}
+}
+}
+
+\DefineProgramInvokationCommand{\EvalSimilarity}{macroape.EvalSimilarity}
+% \DefineProgramInvokationCommand{\EvalAlignment}{macroape.EvalAlignment}
+\DefineProgramInvokationCommand{\ScanCollection}{macroape.ScanCollection}
+\DefineProgramInvokationCommand{\FindThreshold}{ape.FindThreshold}
+\DefineProgramInvokationCommand{\FindPvalue}{ape.FindPvalue}
+\DefineProgramInvokationCommand{\PrecalculateThresholds}{ape.PrecalculateThresholds}
+\DefineProgramInvokationCommand{\SNPScan}{perfectosape.SNPScan}
+
+
+\newcommand*{\example}[1]{\par\vspace{2ex}\noindent\textbf{Example#1:}\par\nopagebreak\vspace{0.5ex plus 0.3ex minus 0.1ex}}
+\newcommand*{\exampleof}[1]{\example{ (#1)}}
+\newcommand*{\usageheader}[1][Usage]{\par\noindent\textbf{#1:}\par\nopagebreak}
+\newcommand*{\outputheader}[1][Output]{\par\noindent\textbf{#1:}\par\nopagebreak}
+\newcommand*{\cmdoutput}[1]{{\small#1}}
+\newcommand*{\cmdoutputfromfile}[1]{\cmdoutput{\verbatiminput{./ProgramOutput/#1}}}
+
+
+\newcommand*{\inangles}[1]{\textless#1\textgreater}
+\newcommand*{\requiredarg}[1]{\inangles{#1}}
+\newcommand*{\optionalarg}[1]{[#1]}
+\newcommand*{\cmdname}[1]{\mbox{\texttt{#1}}}
+\newcommand*{\cmdoption}[1]{\mbox{\texttt{#1}}}
+
+\newcommand*{\pvalue}{\mbox{P-value}}
+\newcommand*{\pvalues}{\mbox{P-values}}
+
+\begin{document}
+
+\title{
+MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ Predicting Regulatory Functional Effect of SNPs\\ by Approximate \pvalue\ Estimation}\\
+% PERFECTOS-APE~---\\{\small Predicting Regulatory Functional Effect of SNPs by Approximate \pvalue\ Estimation}\\
+-- User Manual --
+}
+\maketitle
+
+\input{sections/abstract}
+
+\input{sections/technical-notes}
+
+\input{sections/overview}
+\input{sections/command-line-format}
+
+\section{APE tools}
+\input{sections/ape-introduction}
+
+\input{sections/tools/FindThreshold}
+\input{sections/tools/FindPvalue}
+\input{sections/tools/PrecalculateThresholds}
+
+
+\section{MacroAPE tools}
+\input{sections/macroape-introduction}
+
+\input{sections/tools/EvalSimilarity}
+\input{sections/tools/ScanCollection}
+
+
+\section{PERFECTOS-APE: Predicting Regulatory Functional Effect of SNPs by Approximate P-value Estimation.}
+\input{sections/perfectosape-introduction}
+
+\input{sections/tools/SNPScan}
+
+
+\section{Data formats}
+% Augment with information about transposed matrices with a link to options
+\input{sections/formats/position-matrix-format}
+\input{sections/formats/dinucleotide-matrix-format}
+\input{sections/formats/perfectosape-input}
+
+
+\section{Options}
+% Here we should insert some link to pcm-pwm conversions
+\input{sections/options/transposition}
+
+\input{sections/formats/background-format}
+\input{sections/formats/dibackground-format}
+
+\input{sections/options/advanced-options}
+
+
+\section{Formal math}
+  \input{sections/discretization-strategy}
+  \input{sections/options/pcm-ppm-pwm-conversion-format}
+
+
+\section{Source code}
+package is distributed as a standalone package. It's source code is distributed under GNU GPL and DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE licenses.
+
+One can download lastest version of source code from github: \urldecorated{https://github.com/prijutme4ty/macro-perfectos-ape}
+
+
+\section*{References}
+[Touzet2007] Algorithms Mol Biol. 2007 Dec 11;2:15. Efficient and accurate \pvalue  
+computation for Position Weight Matrices. Touzet H, Varré JS.
+
+[Pape2008] Bioinformatics. 2008 Feb 1;24(3):350-7. Epub 2008 Jan 2. Natural similarity 
+measures between position frequency matrices with an application to clustering. Pape UJ, 
+Rahmann S, Vingron M.
+
+[Lifanov2003] Genome Res. 2003 Apr;13(4):579-88. Homotypic regulatory clusters in 
+Drosophila. Lifanov AP, Makeev VJ, Nazina. AG, Papatsenko DA.
+\end{document}

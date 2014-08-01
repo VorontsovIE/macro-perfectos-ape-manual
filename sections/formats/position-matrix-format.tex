@@ -1,0 +1,15 @@
+\subsubsection{Position matrix format description}
+All tools described below use the following matrix file format (each binding site position 
+corresponds to a separate line):
+
+\texttt{\begin{tabular}{llll}
+some\_header\\
+pos1\_A\_weight & pos1\_C\_weight & pos1\_G\_weight & pos1\_T\_weight\\
+\ldots\\
+posw\_A\_weight & posw\_C\_weight & posw\_G\_weight & posw\_T\_weight
+\end{tabular}
+}
+
+Position matrix format is appliable for all kinds of positional matrices: positional weight(PWM), count(PCM) and probability/frequency(PPM). Matrix elements meaning changes accordingly.
+
+The number of the lines corresponds to the PWM width. If given, header will be treated as a motif name, otherwise filename will stand for motif name. Header has optional \texttt{"\textgreater"} sign at line start. Some real-life examples are provided with the package.

@@ -1,0 +1,35 @@
+# V: discretization
+# P: requested P-value
+# PB: P-value boundary
+# V = 10.0
+# P = 0.0005
+# PB = upper
+#
+# S: similarity
+# D: distance (1-similarity)
+# L: length of the alignment
+# SH: shift of the 2nd PWM relative to the 1st
+# OR: orientation of the 2nd PWM relative to the 1st
+# A1: aligned 1st matrix
+# A2: aligned 2nd matrix
+# W: number of words recognized by both models (model = PWM + 
+threshold)
+# W1: number of words and recognized by the first model
+# P1: P-value for the 1st matrix
+# T1: threshold for the 1st matrix
+# W2: number of words recognized by the 2nd model
+# P2: P-value for the 2nd matrix
+# T2: threshold for the 2nd matrix
+S 0.005720576093936336
+D 0.9942794239060637
+L 14
+SH 1
+OR direct
+A1 >>>>>>>>>>>...
+A2 .>>>>>>>>>>>>>
+W 1559.0W1 139264.0
+P1 0.000518798828125
+T1 5.6
+W2 134820.0
+P2 0.0005022436380386353
+T2 4.5

@@ -1,0 +1,55 @@
+\section{Introduction}
+\emph{From old manual abstract: Let us have two PWMs with given threshold levels. Using macroape software one can 
+calculate the number of words recognized by both PWMs (or the aggregated probability of the 
+word set under the given i.i.d. model). To calculate this value we use generalized approach 
+described in [Touzet2007] for two PWMs simultaneously in a way similar to that in [Pape2008]
+. The number of words recognized by both PWMs can be used to construct a variant of Jaccard 
+similarity measure for motifs considered as sets of allowed words.}
+
+Typical methods of comparing PWMs are based on direct comparison of elements, for instance 
+by comparing matrices column by column (where different columns correspond to different 
+positions of a binding site). On the other hand, in applications PWM is used as TFBS model 
+to identify “binding sites” by scanning a given text and identifying words having PWM scores 
+no less than a preselected threshold. So, in reality a TFBS model is related to the set of words 
+scoring no less than the given threshold for the given PWM. It is desirable to construct a 
+similarity measure for TFBS models according to the similarity between word sets recognized 
+by the matrices with given thresholds, rather than according to similarity between matrices per 
+se. Moreover, comparison-by-elements strategy requires the matrices to have algebraically 
+comparable values (either frequencies or specifically scaled weights) which is not necessary if 
+sets of recognized TFBS are compared.
+
+Here we present a similarity measure which directly accounts for the similarity of 
+recognized word sets. This measure does not require PWM elements to be algebraically 
+comparable and so it can be used to compare weight matrices constructed by different 
+normalization / conversion strategies.
+
+Let us have a position weight matrix of length $w$. The whole set of ACGT-alphabet 
+words of length $w$ will be called the dictionary of size $N=4^w$. For a fixed threshold level $t$ one 
+can calculate the fraction of the dictionary (i.e. the number of words $n$) scoring no less than the 
+threshold. We will call the value of $n / N$ as the motif \pvalue.
+
+Suppose we have two PWMs $m_1$, $m_2$ of length $w$ and some \pvalue\ levels $p_1$, $p_2$. For $m_1$
+and $m_2$ we can estimate the thresholds $t_1$ and $t_2$ corresponding to $p_1$, $p_2$. Having PWMs with the 
+corresponding thresholds we can estimate the fraction f of the dictionary recognized by both 
+models, i.e. the size of the set of words scoring no less than $t_1$ on $m_1$ and no less than $t_2$ on $m_2$.
+
+Moreover one can construct the Jaccard index 
+$$J = \frac{\mathbf{A}\cap \mathbf{B}}{\mathbf{A}\cup \mathbf{B}}\,, $$
+where $\mathbf{A}$ and $\mathbf{B}$ are 
+sets of words recognized by $m_1$ and $m_2$ with the thresholds $t_1$ and $t_2$. If necessary one also can 
+construct a Jaccard distance as $$d(\mathbf{A},\mathbf{B}) = 1 - J\,.$$
+
+In the general case we have two PWMs of different widths, unknown optimal mutual 
+alignment and orientation. For each possible alignment shift and orientation the matrices can be 
+extended to the same length by adding zero-columns (not affecting either score or threshold) 
+and then compared as the two models of the same width. Then one can determine the optimal 
+shift and orientation by selecting the case with the highest Jaccard similarity. More formal and 
+detailed explanation can be found in the corresponding macroape paper [].
+
+\emph{
+I don't understand rationales of the next paragraph. It should probably be removed.}
+
+\emph{The comparison strategy does not require PWMs to be directly comparable (so PWMs can be 
+constructed from position count matrices, PCMs, using completely different approaches). Still it 
+is prudent to use similarly processed matrices for collection and a query motif in motif scanning procedure. }
+

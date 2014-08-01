@@ -1,0 +1,46 @@
+\subsection{SNPScan}
+\cmdname{SNPScan} takes a list of SNVs with flanking sequences and a motif collection and returns a list of TFBSs which were disrupted or emerged by a certain SNV.
+\usageheader
+\SNPScan{\requiredarg{path to a collection of motifs} \requiredarg{path to a file with a list of SNPs} \optionalarg{options}}
+
+
+\cmdname{SNPScan} has two filters. The first one filters out such (SNV,~TF) pairs that no one variant represents a binding site. \cmdname{SNPScan} treat a word as a TFBS if \pvalue\ of this score is no greater than threshold (which is equal to 0.0005 by default). One can change this criterium by a \cmdoption{--pvalue-cutoff} option:\\
+\cmdname{--pvalue-cutoff \requiredarg{maximal \pvalue\ to be considered}}\\
+or its short analogue:\\
+\cmdname{-P \requiredarg{maximal \pvalue\ to be considered}}.
+
+The second filter requires that SNV fold change was big enough. By default fold change threshold is equal to $5$. It means that only SNVs causing change in \pvalue\ in more than 5 times in any direction ($\mbox{FoldChange}>5$ or $\mbox{FoldChange}<1/5$) will be printed in results. Fold change threshold can be specified by an option \cmdoption{--fold-change-cutoff}:\\
+\cmdoption{--fold-change-cutoff \requiredarg{minimal fold change to be considered}}\\
+or its short analogue:\\
+\cmdoption{-F \requiredarg{minimal fold change to be considered}}
+
+The last but the most useful option is \cmdoption{--precalc} which force \cmdname{SNPScan} to work with precalculated \pvalue,thresholds pairs performing binary search to evaluate a \pvalue\ instead of calculating motif score distribution each time from scratch. It can reduce total computation time in hundreds of times for large datasets.
+As an input it requires a folder with precalculated (\pvalue,threshold) pairs - one for each motif:\\
+\cmdoption{--precalc \requiredarg{path to a folder with precalculated P-value, threshold pairs}}
+
+These precalculated score distributions are to be produced by a \cmdname{PreprocessCollection} tool from APE tools.
+
+
+\example{}
+\SNPScan{./hocomoco/pwms/ snp.txt --precalc ./collection\_thresholds}
+\SNPScan{./hocomoco/pcms/ snp.txt --pcm -d 10 -b 0.2,0.3,0.3,0.2}
+
+\subsubsection{Output data format}
+
+\cmdname{SNPScan} outputs all data in standard output, errors and messages goes into standard error stream. First line of output is a header of table. Latter lines are rows of this table. Columns are goes as follows:
+\begin{itemize}
+\item Name of sequence containing SNV
+\item TF motif name
+\item for the first allele variant:
+\begin{itemize}
+\item   the best position and strand of TF-DNA binding
+\item   nucleotide word corresponding to the best binding sequence among all other words in sequence, intersecting SNV
+\end{itemize}
+\item the same two columns for the second allele variant
+\item allele variants
+\item P-value for the first allele variant
+\item P-value for the second allele variant
+\item fold change (the first P-value divided by the second P-value)
+\end{itemize}
+
+Position of the best binding place is given for the leftmost boundary of binding sequence (independent of strand). Zero is the place of SNV, so coordinates are less or equal to zero. Strand is denoted `direct` or `revcomp`. Words are given being mapped to the relevant strand (i.e. reverse-complemented if necessary).

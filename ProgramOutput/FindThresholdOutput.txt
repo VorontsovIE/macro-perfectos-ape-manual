@@ -1,0 +1,12 @@
+# V: discretization value
+# PB: P-value boundary
+# V = 10000
+# PB = lower
+#
+# P: requested P-value
+# AP: actual P-value
+# W: number of recognized words
+# T: threshold
+# P AP W T
+0.0005 0.000499725341796875 524.0 5.24071
+0.001 0.00099945068359375 1048.0 4.17189
