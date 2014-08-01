@@ -1,9 +1,14 @@
-APE tools generally deals with a task of converting motif thresholds to \pvalues\ and vice versa.
+APE tools are designed to properly convert PWM thresholds to \pvalues\ and vice versa.
 
-Position weight matrix~(PWM) of a transcription factor~(TF) assigns a score to each word (nucleotide sequence of fixed length). It makes possible to range the words by their affinity to a TF. Given a threshold, one can divide all words into two subsets: words whose score exceeds the threshold and the rest. First subset represents putative transcription factor binding sites~(TFBS).
+Position weight matrix~(PWM) of DNA motifs assigns a score to each "word" (nucleotide sequence of a fixed length $l$). It makes 
+possible to range the words by their scores, e.g. corresponding to predicted transcription affinity for PWMs of transcription factor binding sites~(TFBS). Given a threshold, one can divide all $l$-mers into two subsets: words whose score are not less than the threshold and the rest. Typically, the words passing the score threshold are selected for downstream analysis, e.g. they are considered as putative transcription factor binding sites. 
 
-It's a common task to evaluate a \pvalue\ of a certain PWM score, i.e. a probability to generate a word at random with the score not less than given. It provides an uniform measure to assess a TF affinity to a binding site.
+What is important, the threshold values are not directly comparable for different PWMs. One strategy to have a unified scale is to use motif \pvalues instead.
 
-Inverse task is obtaining a threshold by a \pvalue. The most common use case is assigning a threshold for a PWM such that a constant rate of words are sites (e.g. top 0.05\%).
+The \pvalue\ of a certain PWM and a score threshold is the probability to generate a word with the score not less than the threshold at random.
 
-Our tools perform threshold -- \pvalue\ conversion implementing a dynamic programming algorithm on a discreeted PWM models, similar to one described in [Touzet].
+Inverse task is to estimate a threshold for a predefined \pvalue. The most common use case is assigning a threshold for a PWM such that a constant rate of positive prediction rate across the $l$-mer dictionary (e.g. only $x\%$ of words are predicted as putative TFBS).
+
+Our tools perform threshold -- \pvalue\ conversion implementing a dynamic programming algorithm on a granulated (discretized) PWM models using a simplified approach comparing to that described in [Touzet].
+
+More details on \pvalues, thresholds and the algorithm are provided in the MACRO-APE paper. [MACROAPE] \urldecorated{http://www.almob.org/content/8/1/23}
