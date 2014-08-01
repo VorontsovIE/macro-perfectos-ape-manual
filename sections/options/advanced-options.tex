@@ -48,3 +48,12 @@ boundary of the threshold by default.
 \cmdname{PrecalculateThresholds} and \cmdname{ScanCollection} have additional option \cmdoption{--silent} which 
 disables the output of progress information (printed to stderr by default).
 
+
+
+
+
+For a more precise result one can use \cmdoption{"-d \requiredarg{discretization rate}"} command line key like \cmdoption{"-d 100000"} to explicitly set
+the discretization level for PWM elements (see the "PWM discretization" subsection in "Formal math" section below).
+The discretization level of $10^5$ corresponds to the precision of PWM elements up to
+5 decimal places. A larger number of decimal places results in increased precision and
+computational time. The default setting of 10000 gives reasonable "time-precision" tradeoff.
