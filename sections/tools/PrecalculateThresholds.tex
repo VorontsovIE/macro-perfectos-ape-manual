@@ -1,6 +1,6 @@
 \subsection{PrecalculateThresholds}
 This tool is intended to process the motif collection (a folder containing separate
-files for each motif) and to store precomputed score distributions of motif PWMs. Each score distributions is saved as a sorted list of \mbox{(threshold,\pvalue)} pairs with \pvalue taken at uniform intervals at quantiles of score distribution. It allows for faster score -- \pvalues\ conversion performing binary search through a list of thresholds or \pvalues. \cmdname{PrecalculateThresholds} doesn't store precise score distribution because for a non-disretized PWM it can be extremely large with unpractical precision. Practically it's sufficient to estimate \pvalue\ with a specified error level of e.g. 5\%.
+files for each motif) and to store precomputed score distributions of motif PWMs. Each score distributions is saved as a sorted list of \mbox{(threshold,\pvalue)} pairs with \pvalues taken at uniform intervals at quantiles of score distribution. It allows for faster score -- \pvalue\ conversion performing binary search through a list of thresholds or \pvalues. \cmdname{PrecalculateThresholds} doesn't store precise score distribution because for a non-disretized PWM it can be extremely large with unpractical precision. Practically it's sufficient to estimate \pvalue\ with a specified error level of e.g. 5\%.
 
 In order to use precalculated distribution several *-APE tools have \cmdoption{--precalc} option which takes a folder containing results of \cmdname{PrecalculateThresholds}.
 
