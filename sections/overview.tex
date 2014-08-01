@@ -1,23 +1,25 @@
 \section{Overview}
-All tools are packed in a jar-file with compiled Java classes. There are three principal packages for tools:
+All tools are packed in a jar-file with compiled Java classes. There are three main packages for tools:
 \texttt{ru.autosome.ape}, \texttt{ru.autosome.macroape} and \texttt{ru.autosome.perfectosape}.
 
 \textbf{APE} in \texttt{ru.autosome.ape} stands for Approximate \pvalue\ Estimation, this package contains basic tools:
 \begin{itemize}
-\item \cmdname{FindThreshold}~--- to find PWM threshold for a given \pvalue
-\item \cmdname{FindPvalue}~--- to find PWM \pvalue\ corresponding to a given threshold
-\item \cmdname{PrecalculateThresholds}~--- to precalculate lists of thresholds by \pvalues\ for a motif collection
+\item \cmdname{FindThreshold}~--- to estimate a PWM score threshold for a given \pvalue
+\item \cmdname{FindPvalue}~--- to estimate a PWM \pvalue\ corresponding to a given score threshold
+\item \cmdname{PrecalculateThresholds}~--- to precalculate lists of thresholds tabulated by \pvalues\ for a given motif collection
 \end{itemize}
 
 \textbf{MACRO-APE} in \texttt{ru.autosome.macroape} denotes MAtrix CompaRisOn by Approximate \pvalue\ Estimation. Package consists of several tools related to motif comparison:
 \begin{itemize}
-\item \cmdname{EvalSimilarity}~--- to evaluate similarity between a pair of PWMs.
-\item \cmdname{ScanCollection}~--- to search a collection of motifs for PWMs similar to a given one.
+\item \cmdname{EvalSimilarity}~--- to evaluate similarity for a given pair of PWMs.
+\item \cmdname{ScanCollection}~--- to search a collection of motifs for PWMs similar to a given query.
 % \item \cmdname{CollectDistanceMatrix}~--- to collect pairwise distance matrix for a motif collection which can be further used for motif clustering. (Not yet finalized tool!)
 % \item \cmdname{AlignMotifs}~--- to evaluate the best motif relative alignment. (This tool not yet moved from ruby to Java!)
 \end{itemize}
 
-\textbf{PERFECTOS-APE} in \texttt{ru.autosome.perfectosape} denotes Predicting Regulatory Functional Effect of SNPs by Approximate \pvalue\ Estimation. Package consists of a the only tool:
+\textbf{PERFECTOS-APE} in \texttt{ru.autosome.perfectosape} denotes Predicting Regulatory Functional Effect of SNPs by Approximate \pvalue\ Estimation. Package contains a single tool:
 \begin{itemize}
-\item\cmdname{SNPScan}~--- to search a pack of sequences with SNVs against a collection of PWMs for (SNV, PWM) pairs, such that single nucleotide substitution induces significant affinity change of a given PWM to a given sequence.
+\item\cmdname{SNPScan}~--- to search a pack of sequences with SNVs or SNPs against a collection of PWMs for (SNV, PWM) pairs, such that single nucleotide substitution induces significant change of predicted affinity for a given PWM.
 \end{itemize}
+
+\textbf{Please note}, that *-APE tools by default consider all given matrices as positional weight matrices with additive scores already passed counts-to-weights transformation (e.g. log-odds). The usage of count matrices (PCMs) or frequency matrices (PPMs) is also possible with additional command-line keys (see the respective section).
