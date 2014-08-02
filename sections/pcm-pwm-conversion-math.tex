@@ -1,7 +1,17 @@
+\subsection{PCM to PWM conversion algorithm}
 Matrix of positional counts (PCM) can be transformed into PWM according to the formula used in [Lifanov2003]:
 \begin{equation}PWM_{\alpha,j} = \ln\frac{ PCM_{\alpha,j} + aq_{\alpha} }{ (W+a)q_{\alpha} }\,, \end{equation}
 
-where $\alpha$ is a nucleotide index and $j$ is a position index; $W$ is the total weight of the alignment (or the number of aligned words), $a$ is the 
-pseudocount value selected by default as the $\ln(W)$, and $q_{\alpha}$ is the background probability of nucleotide letter $\alpha$.
+where $\alpha$~is a nucleotide (or dinucleotide) index and $j$~is a position index; $W$~is the total weight of the alignment (or the number of aligned words), $a$~is the
+pseudocount value, and $q_{\alpha}$~is the background probability of nucleotide letter~$\alpha$.
 
-This conversion procedure isn't the only one possible, but all our tools use this procedure. If you need another one, you can manually convert PCMs into PWMs according to your owm algorithm.
+Pseudocount is taken by default as the $\ln{W}$ but can be specified to be a different fixed number.
+
+Alignment weight $W$ can be calculated from a given PCM as a sum of each nucleotide counts: $W_i = \sum_{\alpha}PCM_{\alpha,i}$. $W_i$~is the alignment weight for \mbox{$i$-th} position. Typically each position has the same alignment weight~$W$, but some multiple local alignment algorithms produce positional count matrices with different weights~$W_i$ of words covering each position (e.g. flanks can have less weight than a central part of motif). Thus total weight of alignment should be calculated on a per position basis.
+
+For \PcmToPwm\ conversion *-APE tools use a formula slightly modified according to this remark:
+\begin{equation}PWM_{\alpha,j} = \ln\frac{ PCM_{\alpha,j} + a_j q_{\alpha} }{ (W_j+a_j)q_{\alpha} }\end{equation}
+
+Here $a_j$ is a pseudocount related to \mbox{$j$-th} position. It can be either fixed for each position or equal to a logarithm of corresponding total alignment weight: $a_j=\ln{W_j}$
+
+This conversion procedure isn't the only one possible, but all our tools follow this approach. If you need another one, you can manually convert PCMs into PWMs according to your own algorithm.
