@@ -1,5 +1,7 @@
-Each tools can be configured with multiple options. All options should go after the required arguments. There are some options common for the majority of MACRO-PERFECTOS-APE tools and some options are tool specific. Tool-specific options were already described in the Tools section. Common options will  be described in this section.
+Many additional options are available for *-APE tools. The options should be provided after the required arguments. There are common options among all *-APE tools as well as tool-specific options (already described in the respective sections).
 
-Options can be divided into two large classes: those which alter input data format and those which affect tool calculation. The first class of options allows one to load motifs from PCM or PPM instead of PWM, read matrices in non-standard transposed format and make mononucleotide motifs mimic dinucleotide ones. The second class of options allow specifing background model, select \pvalue\ evaluation mode, limit memory consumption and so on.
+This section covers common options: those altering input data format and those affecting calculation parameters.
+The first class of options allows using input motifs as different matrices (counts, PCM or probabilities, PPM) instead of default weights (PWM), load matrices in transposed format and use mononucleotide motifs in dinucleotide tools.
+The second class of options allows to set the background model, select \pvalue\ evaluation mode, limit memory consumption and so on.
 
-Some tools have multiple options correspondning to the same option type. In such cases this manual describes the only one option from the family. This manual doesn't describe each of options separately and doesn't try to list all the options the tool. For a full list of tool options, please use \cmdoption{--help} command line option.
+For a full list of options for a particular tool please run the tool with the \cmdoption{--help} command line option.

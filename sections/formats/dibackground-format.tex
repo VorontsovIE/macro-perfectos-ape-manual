@@ -1,8 +1,11 @@
-\subsubsection{Dinucleotide background}
-Dinucleotide background has the same options: wordwise, uniform, GC-content and dinucleotide frequencies. Worwise, uniform and GC-content backgrounds are effectively the same as mononucleotide ones and don't carry nucleotide interdependencies.
+\subsubsection{Dinucleotide background options}
+Dinucleotide background for dinucleotide tools has the same variants: wordwise, uniform, GC-content and full list of dinucleotide frequencies. Worвwise, uniform and GC-content backgrounds are effectively the same as mononucleotide ones and don't carry any nucleotide interdependencies.
 
-Dinucleotide frequencies in turn require some additional notes. Dinucleotide frequencies go in standard dinucleotide order: AA, AC, AG, \dots, TT~--- 16 terms. Each value means probability of a specific dinucleotide. These probabilities are \textbf{not} conditional probabilities used by an algorithm, conditional probabilities are calculated internally. Be careful if you got used to use Markov model background.
+Dinucleotide frequencies require additional clarification. Dinucleotide frequencies should be given in an alphabetical order: AA, AC, AG, \dots, TT~--- 16 terms.
 
-Again, list of frequencies is comma-separated, no spaces allowed, sum of probabilities should be equal to 1.0.
+Each value corresponds to a probability of a specific dinucleotide. These probabilities are \textbf{not} conditional probabilities used by an algorithm internally, but actual dinucleotide frequencies.
+Please be careful if you already got used to use Markov model background.
 
-Also one can specify mononucleotide ACGT-frequencies background even in dinucleotide tools. It will be recognized automatically when 4 values are specified instead of 16 ones. In such a case dinucleotide background will treat nucleotide as non-depending from previous one.
+Again, list of probabilities is comma-separated, no spaces allowed, sum of probabilities should be equal to 1.0.
+
+Also one can specify mononucleotide ACGT-frequencies background for dinucleotide tools. It will be recognized automatically when 4 values are specified instead of 16.

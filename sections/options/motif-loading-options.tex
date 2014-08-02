@@ -1,5 +1,5 @@
 \subsection{Motif loading options}
-By default motifs are expected to be represented as position weight matrices in a nucleotides-in-columns plain text format. Basic tools expect mononucleotide positional matrices, dinucleotide versions expect dinucleotide matrices. But every of this assumptions can be overrided by specifiing a set of options. These options are available for each tool.
+By default motifs are expected to be provided as position weight matrices in a nucleotides-in-columns plain text format. Basic tools use mononucleotide positional matrices, dinucleotide tools use dinucleotide matrices. However, many motif collections provide position frequency matrices (PFMs, or probability matrices, PPMs) or position count matrices (PCMs). *-APE tools can convert these matrices to PWMs internally (using a log-odds-like transformation as in [Lifanov2003], see the "Formal math" section below).
 
 
 \begin{figure}[h]
@@ -11,7 +11,7 @@ PPM     &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & PWM \bullet         
         &                                                 &     \downarrow            &                                               &  \\
 DiPPM   &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & DiPWM \bullet             & \stackrel{\cmdoption{--pcm}}{\longleftarrow}  &  DiPCM
 \end{array}$$
-\caption{Options to obtain a motif from non-PWM motif models. Conversion end-points are marked with bullets.}\label{motif-conversion-types}
+\caption{Command-line options to read a motif from non-PWM motif models. Conversion end-points are marked with bullets.}\label{motif-conversion-types}
 \end{figure}
 
 
@@ -29,9 +29,10 @@ DiPPM & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & DiPCM & \sta
 \input{sections/options/pcm-ppm-pwm-conversion}
 \input{sections/options/from-mono}
 
-When both \cmdoption{--pcm} and \cmdoption{--from-mono} options are specified, it is done in two stages (see fig.~\ref{motif-conversion-configuration}). First, \PcmToPwm\ transformation is done and then \PwmToDiPwm\ transformation is made. Background used for \PcmToPwm\ conversion should be mononucleotide while background provided to a dinucleotide tool should be dinucleotide. Necessary mononucleotide background is estimated from averaging dinucleotide background:
+When both \cmdoption{--pcm} and \cmdoption{--from-mono} options are specified, the conversion is done in two stages (see fig.~\ref{motif-conversion-configuration}). First, \PcmToPwm\ transformation is applied and then \PwmToDiPwm\ transformation is applied. 
+Background model used in \PcmToPwm\ conversion should be given as mononucleotide letter frequencies ("Bernoulli" i.i.d. random model). Background provided to a dinucleotide tool should be given as dinucleotide frequencies. In this case mononucleotide frequencies are estimated by averaging dinucleotide background:
 $$p_{\alpha} = \frac{\sum_{\beta}p_{\alpha\beta} + \sum_{\beta}p_{\beta\alpha}}{2}$$
 
 
 \subsubsection{\cmdoption{--transpose} option}\label{TransposeOption}
-One can load motifs from nucleotides-in-rows, by specifying \cmdoption{--transpose}. The only difference in format is matrix orientation, header remains the same.
+One can load motifs from nucleotides-in-rows using \cmdoption{--transpose} option. The only difference in format is matrix orientation, header remains the same~(see "Position matrix format" section).

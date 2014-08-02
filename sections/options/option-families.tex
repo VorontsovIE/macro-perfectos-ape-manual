@@ -1,12 +1,13 @@
 \subsection{Option families}
 {\small
-Families of options have similar names, but different prefices. For example \cmdname{macroape.di.EvalSimilarity} tool, has an option \cmdoption{--from-mono}. This option means that both dinucleotide motifs should be obtained from mononucleotide ones. In turn \cmdoption{--first-from-mono} options means that the first motif will be obtained from mononucleotide input. \cmdoption{--second-from-mono} does the same but for the second motif.
 
-Analogous options for \cmdname{macroape.ScanCollection} are named \cmdoption{--query-from-mono} and \cmdoption{--collection-from-mono}. Option \cmdoption{--query-from-mono} demands mononucleotide query motif, and \cmdoption{--collection-from-mono} means that each motif in collection should be loaded from mononucleotide motif. The same is appliable for options like \cmdoption{--background}.
+Options are grouped into "families" of options with similar names but different prefixes. For example \cmdname{macroape.di.EvalSimilarity} tool, has an option \cmdoption{--from-mono}. This option creates dinucleotide motifs by loading mononucleotide matrices. In turn, \cmdoption{--first-from-mono} options forces loading of the first motif from mononucleotide input and \cmdoption{--second-from-mono} does the same for the second motif.
 
-Such triples of options are typically listed in the help string like this: \cmdoption{--[first-|second-]from-mono}. It means that one can use both prefixed and non-prefixed options. And possible prefixes are given in square brackets separated with a pipe sign \texttt{"|"}.
+Similar options for \cmdname{macroape.ScanCollection} are named \cmdoption{--query-from-mono} and \cmdoption{--collection-from-mono}. Option \cmdoption{--query-from-mono} requires mononucleotide query matrix, and \cmdoption{--collection-from-mono} means that each motif in collection should be loaded from mononucleotide matrix. The same is appliable for \cmdoption{--background}.
 
-\textbf{Note:} Be careful! Prefixed options are always written in a long form. One can use both \cmdoption{-b} and \cmdoption{--background} as synonymous but even when \cmdoption{--first-background} is available there is no \cmdoption{--first-b} option.
+Such triples of options are typically listed in the help string like this: \cmdoption{--[first-|second-]from-mono}. It means that one can use both prefixed and non-prefixed options. Possible prefixes are given in square brackets separated with a pipe sign \texttt{"|"}.
 
-\textbf{Note:} Existence of separate options for each motif doesn't necessarily involve existence of common option. E.g. \cmdname{macroape.EvalSimilarity} has options \cmdoption{--first-threshold} and \cmdoption{--second-threshold} but doesn't have \cmdoption{--threshold} because it has no sense.
+\textbf{Note:} Prefixed options exist only in a long form. E.g. one can use both \cmdoption{-b} and \cmdoption{--background} as synonymous but for there is no short analogue for \cmdoption{--first-background}.
+
+\textbf{Note:} Presence of separate options for each of used motifs doesn't necessarily involve existence of a common option. E.g. \cmdname{macroape.EvalSimilarity} has \cmdoption{--first-threshold} and \cmdoption{--second-threshold} options but doesn't have \cmdoption{--threshold} since it generally makes no sense to use the same algebraical threshold value for two independent PWMs (common \pvalue\ level in turn is a reasonable parameter).
 }
