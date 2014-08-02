@@ -59,6 +59,12 @@
 \newcommand*{\pvalue}{\mbox{P-value}}
 \newcommand*{\pvalues}{\mbox{P-values}}
 
+\newcommand*{\PcmToPwm}{PCM~$\rightarrow$~PWM}
+\newcommand*{\PpmToPwm}{PPM~$\rightarrow$~PWM}
+\newcommand*{\PpmToPcm}{PPM~$\rightarrow$~PCM}
+\newcommand*{\PwmToDiPwm}{PWM~$\rightarrow$~DiPWM}
+\newcommand*{\DiPcmToDiPwm}{DiPCM~$\rightarrow$~DiPWM}
+
 \begin{document}
 
 \title{
@@ -105,10 +111,7 @@ MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ Predicting Regulatory Fu
 \input{sections/options/options-introduction}
 \input{sections/options/option-families}
 
-\input{sections/formats/dinucleotide-matrix-format}
-
-% Here we should insert some link to pcm-pwm conversions
-\input{sections/options/transposition}
+\input{sections/options/motif-loading-options}
 
 \input{sections/formats/background-format}
 \input{sections/formats/dibackground-format}
@@ -118,7 +121,7 @@ MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ Predicting Regulatory Fu
 
 \section{Formal math}
   \input{sections/discretization-strategy}
-  \input{sections/options/pcm-ppm-pwm-conversion-format}
+  \input{sections/pcm-pwm-conversion-math}
 
 \section*{References}
 [MACROAPE] Algorithms Mol Biol. 2013, 8:23.

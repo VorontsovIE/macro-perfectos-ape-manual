@@ -1,0 +1,17 @@
+\subsubsection{Obtaining PWM from PCM and PPM models}
+For loading motif from position count matrices one should specify \cmdoption{--pcm} option. For loading motifs from position frequency matrices one should specify \cmdoption{--ppm} option. (see fig.~\ref{motif-conversion-types})
+
+In such cases, additional step of \PcmToPwm\ or \PpmToPwm\ conversion would be performed.
+
+These data model transformations can be configured.
+
+\PcmToPwm\ conversion is described in a [PCM to PWM math] section. It's possible to manually specify a fixed psedocount $a$ with \cmdoption{--pseudocount \requiredarg{a}} option. When not specified, pseudocount is derived from alignment weight $W$: $a =\ln(W)$.
+
+\PpmToPwm\ conversion is done in two stages. At first PPM is multiplied by a constant alignment weight $W$ to obtain a PCM. Then this PCM is converted to a PWM as described above.
+A user should supply alignment weight $W$ explicitly by the \cmdoption{--effective-count \requiredarg{W}} option. If this information is not given, alignment weight of 100.0 will be used as a default assumption.
+
+\PcmToPwm\ conversion will also take a background specified for tool-specific purposes into account.
+
+DiPCMs are converted to DiPWMs using the same formula as for \PcmToPwm\ conversion, the only difference is that now nucleotide index goes through 16 dinucleotides at each position instead of 4 nucleotides.
+
+All configuration options can be inspected on a fig.~\ref{motif-conversion-configuration}.

@@ -1,0 +1,7 @@
+Matrix of positional counts (PCM) can be transformed into PWM according to the formula used in [Lifanov2003]:
+\begin{equation}PWM_{\alpha,j} = \ln\frac{ PCM_{\alpha,j} + aq_{\alpha} }{ (W+a)q_{\alpha} }\,, \end{equation}
+
+where $\alpha$ is a nucleotide index and $j$ is a position index; $W$ is the total weight of the alignment (or the number of aligned words), $a$ is the 
+pseudocount value selected by default as the $\ln(W)$, and $q_{\alpha}$ is the background probability of nucleotide letter $\alpha$.
+
+This conversion procedure isn't the only one possible, but all our tools use this procedure. If you need another one, you can manually convert PCMs into PWMs according to your owm algorithm.

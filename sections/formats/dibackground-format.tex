@@ -1,6 +1,8 @@
 \subsubsection{Dinucleotide background}
 Dinucleotide background has the same options: wordwise, uniform, GC-content and dinucleotide frequencies. Worwise, uniform and GC-content backgrounds are effectively the same as mononucleotide ones and don't carry nucleotide interdependencies.
 
-Dinucleotide frequencies in turn require some additional notes. Dinucleotide frequencies go in standard dinucleotide order: AA, AC, AG, \dots, TT~--- 16 terms. Each value means probability of a specific dinucleotide. These probabilities are \textbf{not} conditional probabilities used by an algorithm, conditional probabilities are calculated internally. Be careful if you got used to use Markov model background. Again, list of frequencies is comma-separated, no spaces allowed, sum of probabilities should be equal to 1.0.
+Dinucleotide frequencies in turn require some additional notes. Dinucleotide frequencies go in standard dinucleotide order: AA, AC, AG, \dots, TT~--- 16 terms. Each value means probability of a specific dinucleotide. These probabilities are \textbf{not} conditional probabilities used by an algorithm, conditional probabilities are calculated internally. Be careful if you got used to use Markov model background.
+
+Again, list of frequencies is comma-separated, no spaces allowed, sum of probabilities should be equal to 1.0.
 
 Also one can specify mononucleotide ACGT-frequencies background even in dinucleotide tools. It will be recognized automatically when 4 values are specified instead of 16 ones. In such a case dinucleotide background will treat nucleotide as non-depending from previous one.

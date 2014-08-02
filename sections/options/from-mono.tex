@@ -1,0 +1,10 @@
+\subsubsection{Obtaining dinucleotide motifs from mononucleotide ones}
+Dinucleotide *-APE tools take dinucleotide motifs as input parameters. But there is an option \cmdoption{--from-mono} which allows to use basic mononucleotide motifs instead so that \PwmToDiPwm\ will be done internally. It can be useful in following cases:
+\begin{itemize}
+\item Comparison of dinucleotide motif against mononucleotide one. In this case one motif should be loaded as dinucleotide motif, the rest - as mononucleotide motif internally converted to a dinucleotide motif. Further comparison performs on two dinucleotide motifs.
+\item Study of mononucleotide motif properties on dinucleotide background. It isn't possible to specify dinucleotide background for a mononucleotide tool, but is possible to specify mononucleotide motif and dinucleotide background for a dinucleotide tool. 
+\end{itemize}
+
+\PwmToDiPwm\ is done in such a way that each word has the same score on DiPWM as it had on PWM.
+
+{\small\textbf{Notice:} scores of words on discreted PWM and corresponding diPWM can be slightly different due to a discretization step performed after \PwmToDiPwm\ conversion. This discrepancy shouldn't worry you, it's small enough and goes to zero with discretization increase.}
