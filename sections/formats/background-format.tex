@@ -1,5 +1,5 @@
 \subsection{Background model options}
-Nucleotide frequencies of a background model can be specified in optional arguments, e.g. \cmdoption{-b} or \cmdoption{--query-background}. All background options use the same format with a single required argument: \cmdoption{-b \requiredarg{value}}.
+Nucleotide frequencies of a background model can be specified in optional arguments, e.g. \cmdoption{--background} or \cmdoption{--query-background}. All background options use the same format with a single required argument: \cmdoption{--background \requiredarg{value}}.
 
 Default background model is a \texttt{wordwise} model. It means that all our calculations assume uniform nucleotide distribution and the exact number of words is used everywhere instead of probabilities of a word set.
 E.g. \texttt{FindPvalue} will calculate not the probability of a random word score to pass the threshold but a fraction of words scoring greater than threshold estimating the exact number of such words.
@@ -7,13 +7,13 @@ E.g. \texttt{FindPvalue} will calculate not the probability of a random word sco
 A number of words is a more natural and intuitive to use, especially if the background model cannot be properly selected
 thus we suggest "wordwise" mode by default.
 
-Wordwise mode can be specified explicitly, e.g. using \cmdoption{-b wordwise} key.
+Wordwise mode can be specified explicitly, e.g. using \cmdoption{--background wordwise} key.
 
 All following formats are different ways to specify frequencies of each nucleotide:
 \begin{itemize}
-\item The most simple nucleotide background model is uniform, each nucleotide has the same probability to occur. Option format is: \cmdoption{-b uniform}. This is close to wordwise mode, but word set probabilities are used and reported instead of raw counts of words.
-\item It is also possible to specify a fixed GC-content~(in range 0 to 1): \cmdoption{-b \requiredarg{GC-content}}. E.g.~\cmdoption{"-b~0.6"}
-\item The most detailed format is to explicitly specify nucleotide frequencies: \cmdoption{-b \requiredarg{$p_A,p_C,p_G,p_T$}}. E.g.~\cmdoption{"-b 0.2,0.3,0.3,0.2"} will define the same frequencies as for GC-content of 0.6. Note that nucleotide frequencies should be given in alphabetical ACGT-order separated with commas. 
+\item The most simple nucleotide background model is uniform, each nucleotide has the same probability to occur. Option format is: \cmdoption{--background uniform}. This is close to wordwise mode, but word set probabilities are used and reported instead of raw counts of words.
+\item It is also possible to specify a fixed GC-content~(in range $0$ to $1$): \cmdoption{--background \requiredarg{GC-content}}. E.g.~\cmdoption{"--background~0.6"}
+\item The most detailed format is to explicitly specify nucleotide frequencies: \cmdoption{--background \requiredarg{$p_A,p_C,p_G,p_T$}}. E.g.~\cmdoption{"--background 0.2,0.3,0.3,0.2"} will define the same frequencies as for GC-content of $0.6$. Note that nucleotide frequencies should be given in alphabetical ACGT-order separated with commas. 
 \end{itemize}
 
-\textbf{Note:} No spaces between frequencies are allowed (commas only). Sum of frequencies should be equal to 1.0.
+\textbf{Note:} No spaces between frequencies are allowed (commas only). Sum of frequencies should be equal to $1.0$.

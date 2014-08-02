@@ -1,15 +1,15 @@
 \subsection{Additional command-line options}
 
 \subsubsection{Specifying custom discretization level}
-For a more precise result \cmdoption{-d \requiredarg{discretization rate}} command line key like can be used to explicitly set
-the discretization level for PWM elements, e.g. \cmdoption{"-d 100000"} (see the "PWM discretization" subsection in the "Formal math" section below).
+For a more precise result \cmdoption{--discretization \requiredarg{discretization rate}} or \cmdoption{-d \requiredarg{discretization rate}} command line key can be used to explicitly set
+the discretization level for PWM elements, like \cmdoption{"--discretization 100000"} (see the "PWM discretization" subsection in the "Formal math" section below).
 The discretization level of $10^5$ corresponds to the precision of PWM elements up to 5 decimal places.
 A larger number of decimal places results in increased precision and computational time.
 The default setting of $10^4$ for single-motif tools and $10^1$ for motif comparison tools gives reasonable "time-precision" tradeoff.
 
 \subsubsection{Specifying custom \pvalue\ level}
 All tools in \texttt{MACRO-APE} package estimate motif threshold by a \pvalue\ for further use. By default \pvalue\ level of 0.0005 is assumed.
-It can be overriden with \cmdoption{-p \requiredarg{\pvalue}} or \cmdoption{--pvalue \requiredarg{\pvalue}} option key.
+It can be overriden with \cmdoption{--pvalue \requiredarg{\pvalue}} or \cmdoption{-p \requiredarg{\pvalue}} option key.
 
 \subsubsection{Choose proper threshold by a \pvalue}
 All *-APE tools except \cmdname{ape.FindPvalue} and \cmdname{perfectosape.SNPScan} perform internal \pvalue\ to threshold conversion.
