@@ -1,30 +1,38 @@
 \subsection{Additional command-line options}
 
 \subsubsection{Specifying custom discretization level}
-For a more precise result one can use \cmdoption{-d \requiredarg{discretization rate}} command line key like \cmdoption{"-d 100000"} to explicitly set
-the discretization level for PWM elements (see the "PWM discretization" subsection in the "Formal math" section below).
+For a more precise result \cmdoption{-d \requiredarg{discretization rate}} command line key like can be used to explicitly set
+the discretization level for PWM elements, e.g. \cmdoption{"-d 100000"} (see the "PWM discretization" subsection in the "Formal math" section below).
 The discretization level of $10^5$ corresponds to the precision of PWM elements up to 5 decimal places.
 A larger number of decimal places results in increased precision and computational time.
 The default setting of $10^4$ for single-motif tools and $10^1$ for motif comparison tools gives reasonable "time-precision" tradeoff.
 
 \subsubsection{Specifying custom \pvalue\ level}
-All tools in \texttt{MACRO-APE} package estimate motif threshold by a \pvalue\ for further use. By default \pvalue\ level of 0.0005 is assumed. It can be overriden with \cmdoption{-p \requiredarg{\pvalue}} or \cmdoption{--pvalue \requiredarg{\pvalue}} option key.
+All tools in \texttt{MACRO-APE} package estimate motif threshold by a \pvalue\ for further use. By default \pvalue\ level of 0.0005 is assumed.
+It can be overriden with \cmdoption{-p \requiredarg{\pvalue}} or \cmdoption{--pvalue \requiredarg{\pvalue}} option key.
 
 \subsubsection{Choose proper threshold by a \pvalue}
-All *-APE tools except \cmdname{ape.FindPvalue} and \cmdname{perfectosape.SNPScan} perform internally \pvalue\ to threshold conversion. Since PWM \pvalues\ have discrete distribution a given \pvalue\ can be achieved only approximately. One can select threshold yielding actual \pvalue\ below or above than 
-the requested \pvalue. 
+All *-APE tools except \cmdname{ape.FindPvalue} and \cmdname{perfectosape.SNPScan} perform internal \pvalue\ to threshold conversion.
+Since PWM \pvalues\ have discrete distribution a given \pvalue\ can be achieved only approximately.
+A fixed threshold corresponds to the actual \pvalue\ which is smaller or larger than the requested \pvalue.
 
-It can be specified using \cmdoption{--boundary \requiredarg{lower|upper}}.
+The boundary selection can be done using \cmdoption{--boundary \requiredarg{lower|upper}}.
 
 For model comparison by default we use the upper boundary for the \pvalue~(so even at low given \pvalues\ PWMs recognize some words and thus the models can be 
-compared). If searching for a threshold corresponding to the given \pvalue\ we report the lower boundary of the \pvalue\ by default.
+compared). If searching for a threshold corresponding to the given \pvalue\ we report the lower boundary of the \pvalue\ by default (to properly control
+the positive prediction rate corresponding to a given threshold).
 
-\textbf{Note:} \texttt{lower} boundary means that \pvalue\ will be no greater than the requested one. Threshold for \texttt{lower} will be greater than threshold for \texttt{upper} boundary \pvalue.
+\textbf{Note:} \texttt{lower} boundary means that \pvalue\ will be not greater than the requested one.
+The threshold for \texttt{lower} P-value will be greater than the threshold for \texttt{upper} boundary \pvalue.
 
 
 \subsubsection{Limiting CPU and memory consumption}
-It's possible to create an artificially arranged PWM whose score distribution will grow exponentially with length and thus can take a lot of memory and time for computation. This option is mostly designed to prevent website with the web versions of *-APE tools from unnormal CPU and memory consumption. If hash size exceeded tools cancel calculations with \texttt{"Hash overflow"} error message. In such a case you can manually expand hash size limits or lower discretization level (it's probably extremely high).
+It's possible to create an artificially arranged PWM whose score distribution
+ will grow exponentially with length and thus can take a lot of memory and time for computation.
+ This option is mostly designed to prevent *-APE tools from unnormal CPU and memory consumption.
+ If hash size exceeded a given limit, tools cancel calculations with \texttt{"Hash overflow"} error message.
+ In such case user can manually expand hash size limits or lower discretization level.
   \begin{itemize}
   \item \cmdoption{--max-hash-size \requiredarg{size}}: set the internal hash (used for score distribution calculation) size limit. Default value is $10^7$
-  \item \cmdoption{--max-2d-hash-size \requiredarg{size}}: set the internal two-dimensional hash (used for PWM comparison in \texttt{MACRO-APE} toolbox) size limit. Default value is $10^4$.
+  \item \cmdoption{--max-2d-hash-size \requiredarg{size}}: set the internal two-dimensional hash size limit (used for PWM comparison in \texttt{MACRO-APE} toolbox). Default value is $10^4$.
   \end{itemize}

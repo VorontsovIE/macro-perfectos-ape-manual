@@ -9,7 +9,7 @@ PPM     &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & PWM \bullet         
         &                                                 &          |                &                                               &  \\
         &                                                 & \cmdoption{--from-mono}   &                                               &  \\
         &                                                 &     \downarrow            &                                               &  \\
-DiPPM   &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & DiPWM \bullet             & \stackrel{\cmdoption{--pcm}}{\longleftarrow}  &  DiPCM
+diPPM   &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & diPWM \bullet             & \stackrel{\cmdoption{--pcm}}{\longleftarrow}  &  diPCM
 \end{array}$$
 \caption{Command-line options to read a motif from non-PWM motif models. Conversion end-points are marked with bullets.}\label{motif-conversion-types}
 \end{figure}
@@ -20,7 +20,7 @@ DiPPM   &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & DiPWM \bullet       
 $$\begin{array}{ccccc}
 PPM   & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & PCM   & \stackrel{\cmdoption{--background}}{\stackrel{\cmdoption{--pseudocount}}{\longrightarrow}} & PWM \bullet \\
       &                                                           &       &                                                                                            & \downarrow \\
-DiPPM & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & DiPCM & \stackrel{\stackrel{\cmdoption{--background}}{\cmdoption{--pseudocount}}}{\longrightarrow} & DiPWM \bullet
+diPPM & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & diPCM & \stackrel{\stackrel{\cmdoption{--background}}{\cmdoption{--pseudocount}}}{\longrightarrow} & diPWM \bullet
 \end{array}$$
 \caption{Motif transformations configuration options. Conversion end-points are marked with bullets.}\label{motif-conversion-configuration}
 \end{figure}
