@@ -23,7 +23,7 @@ Each file contains lines in the following format:
 Lines are sorted with thresholds ascending (\pvalue\ descending).
 
 It takes about half a minute to preprocess the collection of $\sim$400 mononucleotide PWMs with default
-parameters using 1.5 GHz CPU.
+parameters using 1.5 GHz CPU. During precalculation task progress will be printed to standard error stream. To suppress output use \cmdoption{--silent} option.
 
 To alter granularity of resulting \pvalues\ list one can use \cmdoption{--pvalues} option in the following format:\\
 \cmdoption{--pvalues \requiredarg{from,to,step,mode}}\\
