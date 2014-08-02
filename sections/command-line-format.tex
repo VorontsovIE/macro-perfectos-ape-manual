@@ -22,7 +22,8 @@ Please note, that dinucleotide tools use special input formats for dinucleotide 
 All tools except \cmdname{PrecalculateThresholds} print their results into the standard output stream (stdout).
 \cmdname{PrecalculateThresholds} stores its results in a set of output files created in a specified folder.
 
-\cmdname{PrecalculateThresholds} and \cmdname{ScanCollection} print progress information to the stderr stream. This output can be disabled with \cmdoption{--silent} option.
+Tool output can be redirected to a file with a "\texttt{\textgreater}"-sign. For example:
+\texttt{\FindPvalue{motifs/KLF4\_f2.pwm 3.3 5.0 7.1 \textgreater\ KLF4\_P-values.txt}}
 
 Output generally consists of two types of lines. Lines starting with \texttt{"\#"} character (comments) show
 input parameters and descriptions. The results are presented in non-commented lines.
