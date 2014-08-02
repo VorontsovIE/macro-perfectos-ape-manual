@@ -1,6 +1,6 @@
 \subsection{PrecalculateThresholds}
 This tool is intended to process the motif collection (a folder containing separate
-files for each motif) and to store precomputed score distributions of motif PWMs. Each score distributions is saved as a sorted list of \mbox{(threshold,\pvalue)} pairs with \pvalues taken at uniform intervals at quantiles of score distribution. It allows for faster score -- \pvalue\ conversion performing binary search through a list of thresholds or \pvalues. \cmdname{PrecalculateThresholds} doesn't store precise score distribution because for a non-disretized PWM it can be extremely large with unpractical precision. Practically it's sufficient to estimate \pvalue\ with a specified error level of e.g. 5\%.
+files for each motif) and to store precomputed score distributions of motif PWMs. Each score distributions is saved as a sorted list of \mbox{(threshold,\pvalue)} pairs with \pvalues\ taken at uniform intervals at quantiles of score distribution. It allows for faster score -- \pvalue\ conversion performing binary search through a list of thresholds or \pvalues. \cmdname{PrecalculateThresholds} doesn't store precise score distribution because for a non-disretized PWM it can be extremely large with unpractical precision. Practically it's sufficient to estimate \pvalue\ with a specified error level of e.g. 5\%.
 
 In order to use precalculated distribution several *-APE tools have \cmdoption{--precalc} option which takes a folder containing results of \cmdname{PrecalculateThresholds}.
 
@@ -24,3 +24,19 @@ Lines are sorted with thresholds ascending (\pvalue\ descending).
 
 It takes about half a minute to preprocess the collection of $\sim$400 mononucleotide PWMs with default
 parameters using 1.5 GHz CPU.
+
+To alter granularity of resulting \pvalues\ list one can use \cmdoption{--pvalues} option in the following format:\\
+\cmdoption{--pvalues \requiredarg{from,to,step,mode}}\\
+
+Parameters set the \pvalues\ progression in the resulting list. \pvalues\ can use arithmetic or geometric progession which corresponds to \texttt{add} or \texttt{mul} value of \texttt{mode}.
+
+\texttt{from} and \texttt{to} represent progression boundaries and \cmdoption{step} corresponds to a common difference (\texttt{add}) or a common ratio (\texttt{mul}) of progression. Parameters are comma-separated without spaces between.
+
+For example, default progression can be written as follows:\\
+\cmdoption{--pvalues 1.0,1e-15,1.05,mul}\\
+
+It means that \cmdname{PrecalculateThresholds} collect thresholds for
+each of these \pvalues: $1.0, 1.0/1.05, 1.0/1.05^2, 1.0/1.05^3,\ldots,
+10^{-15}$
+
+To specify relative error of $\epsilon$ use geometric progression with common ratio of $1+\epsilon$ and boundaries: from $1.0$ to a minimal expected non-zero \pvalue.
