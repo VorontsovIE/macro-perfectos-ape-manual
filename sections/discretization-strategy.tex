@@ -1,9 +1,10 @@
 \subsection{PWM discretization}
 Following the general idea described in [Touzet2007] we can effectively calculate the \pvalue\ 
-for a given PWM having fixed precision and a given threshold value. The algorithm of Touzet 
-efficiently processes matrices with integer elements, so the real value matrices are transformed 
-into integer value matrices by multiplying on discretization constant and truncating the decimals. 
-Effectively this is similar to rounding up real value PWMs leaving only the fixed number of 
+for a given PWM with a fixed precision and a given threshold value. The algorithm of Touzet \textit{et al.}
+efficiently processes matrices with integer elements. The matrices with real values are transformed
+into integer value matrices by multiplying each value by discretization constant and truncating the decimals.
+
+Effectively this is similar to rounding up real values leaving only the fixed number of
 decimal places. The higher discretization level will result in a more accurate \pvalue\ calculation 
 and an increased computational time. 
 
@@ -11,12 +12,12 @@ Please note, that in contrast to the original Touzet algorithm here we applying 
 operation to the matrix elements (instead of "floor" in the original paper of Touzet). This allows 
 us to have a strict upper boundary of the threshold for a given \pvalue.
 
-We use the default discretization level of $10^4$ to perform calculation accuracy up to
-four significant digits for single-PWM tools from APE toolbox. The straightforward discretization by rounding up to
+We use the default discretization level of $10^4$ to perform calculations with accuracy up to
+four significant digits for single-PWM tools from APE toolbox.
+
+For motif comparison the straightforward discretization by rounding up to
 the nearest integer is used by default for a fast and rough search through the motif collection. 
 The default level of $10$ (one decimal place) is used for a more precise search of similar motifs.
-
-
 
 Thus in our case discretization is the transformation as follows: discretized~$S$ is
 $S$~multiplied by discretization level~$V$ and rounded up to the nearest integer value.
