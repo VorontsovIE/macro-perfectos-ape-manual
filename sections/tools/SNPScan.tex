@@ -16,7 +16,7 @@ or in short form:\\
 
 The last but the most useful option is \cmdoption{--precalc} which forces \cmdname{SNPScan} to work with precalculated \pvalue,thresholds pairs performing binary search to evaluate the \pvalue\ instead of calculating motif score distribution each time from scratch. It can reduce total computation time in hundreds of times for large datasets.
 As an input it requires a folder with precalculated (\pvalue,threshold) pairs - one for each motif:\\
-\cmdoption{--precalc \requiredarg{path to a folder with precalculated P-value, threshold pairs}}
+\cmdoption{--precalc \requiredarg{path to a folder with precalculated \pvalue, threshold pairs}}
 
 These precalculated score distributions are to be produced by a \cmdname{PreprocessCollection} from APE toolbox.
 Please refer to the respective section for details.
@@ -39,9 +39,9 @@ Please refer to the respective section for details.
 \end{itemize}
 \item the same two columns for the second allele variant
 \item allele variants
-\item P-value for the first allele variant
-\item P-value for the second allele variant
-\item fold change (the first P-value divided by the second P-value)
+\item \pvalue\ for the first allele variant
+\item \pvalue\ for the second allele variant
+\item fold change (the first \pvalue\ divided by the second \pvalue)
 \end{itemize}
 
 Position of the best binding place is given for the leftmost boundary of a binding sequence (independent of strand orientation). The SNV location is at zero, so the TFBS coordinates are always less or equal to zero. Strand is denoted as `direct` or `revcomp`. Words are given at the relevant strand (i.e. reverse-complement transformation is applied if necessary).
