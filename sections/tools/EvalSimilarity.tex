@@ -52,7 +52,7 @@ lower boundary for \pvalue thus controlling the prediction rate more strictly.
 It is very important to select upper \pvalue\ boundary for short PWMs. In case of given 
 low \pvalues\ they can recognize no words at all (so the Jaccard measure may have zero 
 numerator and zero denominator). For reasonable threshold levels both upper and lower 
-boundaries usually produce very close similarity values, see the MACRO-APE paper for details [MACROAPE].
+boundaries usually produce very close similarity values, see the MACRO-APE paper for details \cite{MACROAPE}.
 
 Nevertheless, one can override this behavior with \cmdoption{‘--boundary lower’} option. In such a case if 
 any of supplied PWMs recognizes no words for a selected \pvalue, then similarity can not be 

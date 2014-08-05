@@ -2,7 +2,7 @@ Let us have two PWMs with given threshold levels. The similarity between PWMs is
 related to the number of words recognized by both PWMs
 (or the aggregated probability of the word set under the given i.i.d. model).
 To calculate this value we use generalized approach
-described in [Touzet2007] for two PWMs simultaneously in a way similar to that in [Pape2008].
+described in \cite{Touzet2007} for two PWMs simultaneously in a way similar to that in \cite{Pape2008}.
 The number of words recognized by both PWMs can be used to construct a variant of Jaccard
 similarity measure for motifs considered as sets of allowed words scoring no less than predefined thresholds.
 
@@ -47,7 +47,7 @@ alignment and orientation. For each possible alignment shift and orientation the
 extended to the same length by adding zero-columns (not affecting either score or threshold) 
 and then compared as the two models of the same width. Then one can determine the optimal 
 shift and orientation by selecting the case with the highest Jaccard similarity. More formal and 
-detailed explanation can be found in the corresponding macroape paper [MACROAPE].
+detailed explanation can be found in the corresponding macroape paper \cite{MACROAPE}.
 
 \textbf{NOTE!} The reverse complementary transformation can be necessary to optimally align a given pair of matrices,
 thus the background nucleotide composition for matrix comparison tools should be symmetrical, i.e. p(A) = p(T) and p(C) = p(G).

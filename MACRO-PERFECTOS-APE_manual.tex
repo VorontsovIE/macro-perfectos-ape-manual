@@ -1,4 +1,4 @@
-\documentclass[draft]{article}
+\documentclass[]{article}
 
 \usepackage{amssymb}
 \usepackage{amstext}
@@ -6,6 +6,9 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, urlcolor=blue, pdfborder={0 0 0}]{hyperref}
 \usepackage{verbatim}
+
+\usepackage[authoryear]{natbib}
+\bibliographystyle{plainnat}
 
 \tolerance=500
 \newcommand*{\urldecorated}[1]{[\url{#1}]}
@@ -25,7 +28,7 @@
 }
 
 \newcommand*{\ProgramInvokation}[2]{
-\secondcolindent[2em]{\texttt{java -cp ape.jar \mbox{ru.autosome.#1} }}{\texttt{#2}}
+{\par\parindent=2em\texttt{java -cp ape.jar ru.autosome.#1 #2}}
 }
 
 \newcommand*{\DefineProgramInvokationCommand}[2]{
@@ -68,7 +71,7 @@
 \begin{document}
 
 \title{
-MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ Predicting Regulatory Functional Effect of SNPs\\ by Approximate \pvalue\ Estimation}\\
+MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ PrEdicting Regulatory Functional Effect of SNPs\\ by Approximate \pvalue\ Estimation}\\
 -- User Manual --
 }
 \maketitle
@@ -123,18 +126,6 @@ MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ Predicting Regulatory Fu
   \input{sections/discretization-strategy}
   \input{sections/pcm-pwm-conversion-math}
 
-\section*{References}
-[MACROAPE] Algorithms Mol Biol. 2013, 8:23.
-Jaccard index based similarity measure to compare transcription factor binding site models.
-Ilya E Vorontsov, Ivan V Kulakovskiy and Vsevolod J Makeev
+\bibliography{citations}
 
-[Touzet2007] Algorithms Mol Biol. 2007 Dec 11;2:15. Efficient and accurate \pvalue  
-computation for Position Weight Matrices. Touzet H, Varré JS.
-
-[Pape2008] Bioinformatics. 2008 Feb 1;24(3):350-7. Epub 2008 Jan 2. Natural similarity 
-measures between position frequency matrices with an application to clustering. Pape UJ, 
-Rahmann S, Vingron M.
-
-[Lifanov2003] Genome Res. 2003 Apr;13(4):579-88. Homotypic regulatory clusters in 
-Drosophila. Lifanov AP, Makeev VJ, Nazina. AG, Papatsenko DA.
 \end{document}
