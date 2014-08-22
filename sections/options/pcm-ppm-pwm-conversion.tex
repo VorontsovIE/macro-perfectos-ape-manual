@@ -4,7 +4,7 @@ A similar option \cmdoption{--ppm} words for positional probability matrices (se
 
 The \PcmToPwm\ or \PpmToPwm\ data model transformations can be configured.
 
-The \PcmToPwm\ conversion is described in a \ref{Pcm2PwmMath} section. It's possible to manually specify a fixed pseudocount $a$ with \cmdoption{--pseudocount \requiredarg{a}} option. When not specified, pseudocount is derived from alignment weight $W$: $a =\ln(W)$.
+The \PcmToPwm\ conversion is described in a section \ref{pcm2pwm-algorithm}. It's possible to manually specify a fixed pseudocount $a$ with \cmdoption{--pseudocount \requiredarg{a}} option. When not specified, pseudocount is derived from alignment weight $W$: $a =\ln(W)$.
 
 \PpmToPwm\ conversion is done in two stages. At first PPM is multiplied by a constant alignment weight $W$ to obtain a PCM. Then this PCM is converted to a PWM as described above.
 For the \PpmToPwm conversion, a user should supply alignment weight $W$ (for example it can be the total count of words in the initial alignment) explicitly by the \cmdoption{--effective-count \requiredarg{W}} option. If this information is not given, alignment weight of 100.0 will be used as a default assumption.

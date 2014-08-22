@@ -1,8 +1,6 @@
-\subsection{Additional command-line options}
-
 \subsubsection{Specifying custom discretization level}
 For a more precise result \cmdoption{--discretization \requiredarg{discretization rate}} or \cmdoption{-d \requiredarg{discretization rate}} command line key can be used to explicitly set
-the discretization level for PWM elements, like \cmdoption{"--discretization 100000"} (see the "PWM discretization" subsection in the "Formal math" section below).
+the discretization level for PWM elements, like \cmdoption{"--discretization 100000"} (see the section \ref{discretization-strategy}).
 The discretization level of $10^5$ corresponds to the precision of PWM elements up to 5 decimal places.
 A larger number of decimal places results in increased precision and computational time.
 The default setting of $10^4$ for single-motif tools and $10^1$ for motif comparison tools gives reasonable "time-precision" tradeoff.

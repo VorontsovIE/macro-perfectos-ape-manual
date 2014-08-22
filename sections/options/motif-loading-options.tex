@@ -1,8 +1,7 @@
-\subsection{Motif loading options}
-By default motifs are expected to be provided as position weight matrices in a nucleotides-in-columns plain text format. Basic tools use mononucleotide positional matrices, dinucleotide tools use dinucleotide matrices. However, many motif collections provide position frequency matrices (PFMs, or probability matrices, PPMs) or position count matrices (PCMs). *-APE tools can convert these matrices to PWMs internally (using a log-odds-like transformation as in \cite{Lifanov2003}, see the "Formal math" section below).
+By default motifs are expected to be provided as position weight matrices in a nucleotides-in-columns plain text format. Basic tools use mononucleotide positional matrices, dinucleotide tools use dinucleotide matrices. However, many motif collections provide position frequency matrices (PFMs, or probability matrices, PPMs) or position count matrices (PCMs). *-APE tools can convert these matrices to PWMs internally (using a log-odds-like transformation as in \cite{Lifanov2003}, see the section \ref{formal-math}).
 
 
-\begin{figure}[h]
+\begin{figure}[h]\label{motif-conversion-types}
 \centering
 $$\begin{array}{ccccc}
 PPM     &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & PWM \bullet               & \stackrel{\cmdoption{--pcm}}{\longleftarrow}  &  PCM  \\
@@ -11,18 +10,18 @@ PPM     &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & PWM \bullet         
         &                                                 &     \downarrow            &                                               &  \\
 diPPM   &  \stackrel{\cmdoption{--ppm}}{\longrightarrow}  & diPWM \bullet             & \stackrel{\cmdoption{--pcm}}{\longleftarrow}  &  diPCM
 \end{array}$$
-\caption{Command-line options to read a motif from non-PWM motif models. Conversion end-points are marked with bullets.}\label{motif-conversion-types}
+\caption{Command-line options to read a motif from non-PWM motif models. Conversion end-points are marked with bullets.}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h]\label{motif-conversion-configuration}
 \centering
 $$\begin{array}{ccccc}
 PPM   & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & PCM   & \stackrel{\cmdoption{--background}}{\stackrel{\cmdoption{--pseudocount}}{\longrightarrow}} & PWM \bullet \\
       &                                                           &       &                                                                                            & \downarrow \\
 diPPM & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & diPCM & \stackrel{\stackrel{\cmdoption{--background}}{\cmdoption{--pseudocount}}}{\longrightarrow} & diPWM \bullet
 \end{array}$$
-\caption{Motif transformations configuration options. Conversion end-points are marked with bullets.}\label{motif-conversion-configuration}
+\caption{Motif transformations configuration options. Conversion end-points are marked with bullets.}
 \end{figure}
 
 
@@ -31,8 +30,8 @@ diPPM & \stackrel{\cmdoption{--effective-count}}{\longrightarrow} & diPCM & \sta
 
 When both \cmdoption{--pcm} and \cmdoption{--from-mono} options are specified, the conversion is done in two stages (see fig.~\ref{motif-conversion-configuration}). First, \PcmToPwm\ transformation is applied and then \PwmToDiPwm\ transformation is applied. 
 Background model used in \PcmToPwm\ conversion should be given as mononucleotide letter frequencies ("Bernoulli" i.i.d. random model). Background provided to a dinucleotide tool should be given as dinucleotide frequencies. In this case mononucleotide frequencies are estimated by averaging dinucleotide background:
-$$p_{\alpha} = \frac{\sum_{\beta}p_{\alpha\beta} + \sum_{\beta}p_{\beta\alpha}}{2}$$
+\begin{equation}p_{\alpha} = \frac{\sum_{\beta}p_{\alpha\beta} + \sum_{\beta}p_{\beta\alpha}}{2}\end{equation}
 
 
 \subsubsection{\cmdoption{--transpose} option}\label{TransposeOption}
-One can load motifs from nucleotides-in-rows using \cmdoption{--transpose} option. The only difference in format is matrix orientation, header remains the same~(see "Position matrix format" section).
+One can load motifs from nucleotides-in-rows using \cmdoption{--transpose} option. The only difference in format is matrix orientation, header remains the same~(see section \ref{position-matrix-format}).

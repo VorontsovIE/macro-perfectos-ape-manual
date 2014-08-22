@@ -76,54 +76,79 @@ MACRO-PERFECTOS-APE~---\\{\small MAtrix CompaRisOn \&\\ PrEdicting Regulatory Fu
 }
 \maketitle
 
+\section{Abstract}\label{abstract}
 \input{sections/abstract}
 
+\section{Technical notes}\label{technical-notes}
 \input{sections/technical-notes}
 
+\section{Overview}\label{overview}
 \input{sections/overview}
-\input{sections/command-line-format}
+  \subsection{Command line format}\label{command-line-format}
+  \input{sections/command-line-format}
 
-\section{Basic APE tools}
+\section{Basic APE tools}\label{ape-introduction}
 \input{sections/ape-introduction}
 
-\input{sections/tools/FindThreshold}
-\input{sections/tools/FindPvalue}
-\input{sections/tools/PrecalculateThresholds}
+  \subsection{FindThreshold}\label{find-threshold}
+  \input{sections/tools/FindThreshold}
+
+  \subsection{FindPvalue}\label{find-pvalue}
+  \input{sections/tools/FindPvalue}
+
+  \subsection{PrecalculateThresholds}\label{precalculate-thresholds}
+  \input{sections/tools/PrecalculateThresholds}
 
 
-\section{MACRO-APE: Matrix Comparison by Approximate \pvalue\ Estimation}
+\section{MACRO-APE: Matrix Comparison by Approximate \pvalue\ Estimation}\label{macroape-introduction}
 \input{sections/macroape-introduction}
 
-\input{sections/tools/EvalSimilarity}
-\input{sections/tools/ScanCollection}
+  \subsection{EvalSimilarity}\label{eval-similarity}
+  \input{sections/tools/EvalSimilarity}
+
+  \subsubsection{ScanCollection}\label{scan-collection}
+  \input{sections/tools/ScanCollection}
 
 
-\section{PERFECTOS-APE: Predicting Regulatory Functional Effect of SNPs by Approximate \pvalue\ Estimation.}
+\section{PERFECTOS-APE: Predicting Regulatory Functional Effect of SNPs by Approximate \pvalue\ Estimation.}\label{perfectosape-introduction}
 \input{sections/perfectosape-introduction}
 
-\input{sections/tools/SNPScan}
+  \subsection{SNPScan}\label{snp-scan}
+  \input{sections/tools/SNPScan}
 
 
-\section{Data formats}
-% Augment with information about transposed matrices with a link to options
-\input{sections/formats/position-matrix-format}
-\input{sections/formats/perfectosape-input}
+\section{Data formats}\label{data-formats}
+  \subsection{Position matrix format description}\label{position-matrix-format}
+  \input{sections/formats/position-matrix-format}
+
+  \subsection{SNVs/SNPs format}\label{snp-format}
+  \input{sections/formats/perfectosape-input}
 
 
-\section{Additional command-line options}
+\section{Additional command-line options}\label{command-line-options}
 \input{sections/options/options-introduction}
-\input{sections/options/option-families}
 
-\input{sections/options/motif-loading-options}
+  \subsection{Option families}\label{option-families}
+  \input{sections/options/option-families}
 
-\input{sections/formats/background-format}
-\input{sections/formats/dibackground-format}
+  \subsection{Motif loading options}\label{motif-loading-options}
+  \input{sections/options/motif-loading-options}
 
-\input{sections/options/advanced-options}
+  \subsection{Background model options}\label{background-model-options}
+  \input{sections/formats/background-format}
+
+  \subsubsection{Dinucleotide background options}\label{dinucleotide-background-options}
+  \input{sections/formats/dibackground-format}
+
+  \subsection{Additional command-line options}\label{advanced-options}
+  \input{sections/options/advanced-options}
 
 
-\section{Formal math}
+\section{Formal math}\label{formal-math}
+  \subsection{PWM discretization}\label{discretization-strategy}
   \input{sections/discretization-strategy}
+
+  \subsection{PCM to PWM conversion algorithm}\label{pcm2pwm-algorithm}
   \input{sections/pcm-pwm-conversion-math}
 
 \bibliography{citations}
