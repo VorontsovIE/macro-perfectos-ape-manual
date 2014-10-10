@@ -3,7 +3,7 @@ This is a stand-alone tool to search for a score threshold corresponding to a gi
 words scoring with this PWM no less than the given threshold has the aggregated probability equal to
 the given \pvalue. The program can process a set of \pvalues, and return a set of thresholds.
 This tool implements a simplified algorithm derived from that implemented in the TFM-Pvalue software of
-Helen Touzet \urldecorated{http://bioinfo.lifl.fr/TFM/TFMpvalue/} but with the fixed predefined discretization level (see section \ref{discretization-strategy}).
+Helen Touzet \urldecorated{http://bioinfo.lifl.fr/TFM/TFMpvalue/} but with the fixed predefined discretization level (see section~\ref{discretization-strategy}).
 
 \usageheader
 \FindThreshold{\requiredarg{motif file}\\ \optionalarg{list of \pvalues}}
@@ -14,4 +14,4 @@ Helen Touzet \urldecorated{http://bioinfo.lifl.fr/TFM/TFMpvalue/} but with the f
 % \cmdoutputfromfile{FindThresholdOutput.txt}
 
 NOTE! By default \cmdname{FindThreshold} looks for threshold large enough to obtain \pvalue\ not 
-greater than requested (lower boundary for \pvalue). For details see \cmdoption{--boundary} option description in section \ref{advanced-options}.
+greater than requested (lower boundary for \pvalue). For details see \cmdoption{--boundary} option description in section~\ref{advanced-options}.

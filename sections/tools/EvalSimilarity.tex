@@ -6,12 +6,17 @@ It's possible to set required \pvalue\ with \cmdoption{--pvalue \requiredarg{\pv
 
 In order to get intuition of Jaccard similarity scale and to better catch our output format, try these examples and take a look at corresponding motif logos (see the sample data):
 
-\emph{TODO: here aligned motif logos should go}
-
-\exampleof{rather similar motifs \texttt{KLF4\_f2} and \texttt{SP1\_f1}}
+\exampleof{rather similar motifs \texttt{KLF4\_f2} and \texttt{SP1\_f1}, see fig.~\ref{motif-alignment-figure}}
 \EvalSimilarity{motifs/KLF4\_f2.pat\\ motifs/SP1\_f1.pat}
 % \outputheader
 % \cmdoutputfromfile{EvalSimilarityOutput(KLF4,SP1).txt}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./images/alignment_KLF4_SP1.png}
+\caption{Sequence logo corresponding to a motif alignment.}\label{motif-alignment-figure}
+\end{figure}
 
 \exampleof{the same motif \texttt{SP1\_f1} in opposite orientations}
 \EvalSimilarity{motifs/SP1\_f1\_revcomp.pat\\ motifs/SP1\_f1.pat}
