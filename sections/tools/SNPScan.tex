@@ -1,4 +1,5 @@
 \cmdname{SNPScan} takes a list of SNVs with flanking sequences and a motif collection and returns a list of predicted TFBS which were possibly disrupted by or emerged after a certain SNV.
+If flanking sequence is too short it's padded with poly-N tail up to necessary length.
 \usageheader
 \SNPScan{\requiredarg{path to the collection of motifs} \requiredarg{path to the file with the list of SNVs} \optionalarg{options}}
 
@@ -8,10 +9,20 @@
 or in short form:\\
 \cmdname{-P \requiredarg{maximal \pvalue\ to be considered}}.
 
-The second filter requires check \pvalue\ fold change to be large enough. By default fold change threshold is equal to $5$. It means that only SNVs causing \pvalue\ change of 5x and more ($\mbox{FoldChange>5}$ or $\mbox{FoldChange<1/5}$) will be included in results. Fold change threshold can be specified using \cmdoption{--fold-change-cutoff}:\\
+The second filter requires check \pvalue\ fold change to be large enough. By default fold change threshold is equal to $5$. It means that only SNVs causing \pvalue\ change of 5x and more ($FoldChange \ge 5$ or $FoldChange \le 1/5$) will be included in results. Fold change threshold can be specified using \cmdoption{--fold-change-cutoff}:\\
 \cmdoption{--fold-change-cutoff \requiredarg{minimal fold change to be considered}}\\
 or in short form:\\
 \cmdoption{-F \requiredarg{minimal fold change to be considered}}
+
+\cmdoption{--log-fold-change} option changes fold change from $\frac{\pvalue{}_1}{\pvalue{}_2}$ into
+$\log_{2}{\frac{\pvalue{}_1}{\pvalue{}_2}}$ both in command-line parameter settings and output.
+
+Option \cmdoption{--expand-region \requiredarg{length}} allows PWM hits to be located nearby but not strictly overlap the position with the nucleotide substitution.
+
+When this option is specified, the PWM occurrence can be located up to \texttt{length} bp away from the SNV position.
+
+This option is intended for analysis involving control data with SNVs not necessarily overlapping the binding sites.
+
 
 The last but the most useful option is \cmdoption{--precalc} which forces \cmdname{SNPScan} to work with precalculated \pvalue,thresholds pairs performing binary search to evaluate the \pvalue\ instead of calculating motif score distribution each time from scratch. It can reduce total computation time in hundreds of times for large datasets.
 As an input it requires a folder with precalculated (\pvalue,threshold) pairs - one for each motif:\\
@@ -44,3 +55,21 @@ Please refer to the respective section for details.
 \end{itemize}
 
 Position of the best binding place is given for the leftmost boundary of a binding sequence (independent of strand orientation). The SNV location is at zero, so the TFBS coordinates are always less or equal to zero. Strand is denoted as `direct` or `revcomp`. Words are given at the relevant strand (i.e. reverse-complement transformation is applied if necessary).
+
+More compact output format can be produced using the \cmdoption{--compact} option.
+
+The resulting table will have the following columns:
+\begin{itemize}
+\item Name of sequence containing SNV
+\item TF motif name
+\item \pvalue\ for the first allele variant
+\item \pvalue\ for the second allele variant
+\item the best position and strand of putative TF-DNA binding for the first allele variant
+\item the best position and strand of putative TF-DNA binding for the second allele variant
+\end{itemize}
+
+Please note that fold change and word sequences are not shown (comparing to the default output).
+Strand information is given as +/- form (versus direct/revcomp in the default output).
+\pvalues are rounded up to three significant digits.
+
+This option is intended to process huge lists of SNVs and reduce the output (~2.5x less size).
