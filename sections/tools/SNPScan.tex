@@ -1,5 +1,5 @@
 \cmdname{SNPScan} takes a list of SNVs with flanking sequences and a motif collection and returns a list of predicted TFBS which were possibly disrupted by or emerged after a certain SNV.
-If flanking sequence is too short it's padded with poly-N tail up to necessary length.
+If flanking sequences around SNVs are too short for some TFBS models, the sequences are extended by poly-N tails up to necessary length.
 \usageheader
 \SNPScan{\requiredarg{path to the collection of motifs} \requiredarg{path to the file with the list of SNVs} \optionalarg{options}}
 
