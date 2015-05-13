@@ -7,10 +7,12 @@ Each sequence should be presented at a separate line using the following format:
 SNV name shouldn't contain empty delimiters (spaces or tabs). 
 Sequence consists of two allele variants in square brackets, separated with `/`, and flanking sequences at both sides. Length of flanking sequences should be sufficient to place the longest motif of a given collection (so it is advised to provide 25-30bp at each side) into all positions relative to a nucleotide substitution position. 
 
+So, first two columns are SNV name and SNV sequence. Later columns (if present) are ignored, thus can contain any data.
+
 \exampleof{SNV list}
 \noindent\texttt{%
-rs10040172 gatttgccctgattgcagttactga[G/A]tggtacagacatcgtaataatctta
-rs10116271 taaattctatgtggggaagaggtct[C/T]gtagaggcgatgattcttacattgc
-rs10208293 cttcatacatttatgtccagtacct[A/G]tggaccctccttgtgaactcttctc
-rs10431961 tggcggggctggtcaggcggcgtcg[C/T]cggtacgctctgagcggcagcgtgt
+rs10040172 gattgcagttactga[G/A]tggtacagacatcgt\quad Anything\\
+rs10116271 gtggggaagaggtct[C/T]gtagaggcgatgatt\quad can go\\
+rs10208293 ttatgtccagtacct[A/G]tggaccctccttgtg\quad after first\\
+rs10431961 ggtcaggcggcgtcg[C/T]cggtacgctctgagc\quad two columns
 }
